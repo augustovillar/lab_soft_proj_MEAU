@@ -30,7 +30,7 @@ cd Projeto_MEAU
 python manage.py runserver
 ```
 
-Após isso, a aplicação pode ser visualizada no seguinte endereço (acessar via navegador web): [https://localhost:8000/FIRST](https://localhost:8000/FIRST)
+Após isso, a aplicação pode ser visualizada no seguinte endereço (acessar via navegador web): [http://localhost:8000/FIRST](http://localhost:8000/FIRST)
 
 Para desativar a aplicação, basta pressionar CTRL + C. Para sair do ambiente virtual (env), basta executar o seguinte comando:
 
