@@ -1,52 +1,60 @@
 from django.test import TestCase
 
-# Create your tests here.
-from book.models import Voo, Historico, Relacao
+from book.models import Voo, Historico
 
-class CadastraVooTeste(TestCase):
+class CRUD_voo_teste(TestCase):
 
     @classmethod
 
-    def criaVoo(cls):
+    def create_voo(cls):
         Voo.objects.create (
-            id_voo = '1',
             codigoVoo = 'PCS002GRU',
             rota = 'GRU-SSA',
-            horarioPartidaProgramado = datetime.datetime(hour = 17; minute = 35).from,
-            horarioChegadaProgramado = 19:20,
+            horarioPartidaProgramado = '17:35',
+            horarioChegadaProgramado = '19:20',
             companhia = 'PCS'
         )
 
-    def testaVoo(self):
-        voo1 = Voo.objects.get(codigoVoo = 'Os Irmãos Karamazov')
-        self.assertEqual(livro_1.id, 1)
-    def test_update_titulo(self):
-        livro_1 = Livro.objects.get(titulo='Os Irmãos Karamazov')
-        livro_1.titulo = "Outro nome"
-        livro_1.save()
-        self.assertEqual(livro_1.titulo, "Outro nome")
-class UsuarioModelTest(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        Usuario.objects.create(nome="Michelet")
+    def read_voo(self):
+        voo1 = Voo.objects.get(codigoVoo = 'PCS002GRU')
+        self.assertEqual(voo1.codigoVoo, 'PCS002GRU')
+        self.assertEqual(voo1.rota, 'GRU-SSA')
+        self.assertEqual(voo1.horarioPartidaProgramado, '17:35')
+        self.assertEqual(voo1.horarioChegadaProgramado, '19:20')
+        self.assertEqual(voo1.companhia, 'PCS')
 
-    def test_criacao_id(self):
-        usuario_1 = Usuario.objects.get(nome="Michelet")
-        self.assertEqual(usuario_1.id, 1)
+    def update_voo(self):
+        voo1 = Voo.objects.get(codigoVoo = 'PCS002GRU')
+        voo1.horarioChegadaProgramado = '16:20'
+        voo1.save()
+        self.assertEqual(voo1.horarioChegadaProgramado, '16:20')
 
-class EmprestimoModelTest(TestCase):
+    def delete_voo(self):
+        Voo.objects.filter(codigoVoo = 'PCS002GRU').delete()
+        self.assertEqual(Voo.objects.count(),0)
+
+class Historico_test(TestCase):
+
     @classmethod
-    def setUpTestData(cls):
-        Usuario.objects.create(nome="Michelet")
-        Livro.objects.create(titulo='Os Irmãos Karamazov')
-        livro_1 = Livro.objects.get(titulo='Os Irmãos Karamazov')
-        usuario_1 = Usuario.objects.get(nome="Michelet")
-        Emprestimo.objects.create(livro=livro_1, usuario=usuario_1)
-    def test_criacao_emprestimo_id(self):
-        emprestimo_1 = Emprestimo.objects.get(id=1)
-        
-        self.assertEqual(emprestimo_1.usuario.id,1)
-    
-    def test_delete_emprestimo(self):
-        Emprestimo.objects.filter(id=1).delete()
-        self.assertEqual(Emprestimo.objects.count(),0)
+
+    def create_historico(cls):
+        Voo.objects.create (
+            codigoVoo = 'PCS002GRU',
+            rota = 'GRU-SSA',
+            horarioPartidaProgramado = '17:35',
+            horarioChegadaProgramado = '19:20',
+            companhia = 'PCS'
+        )
+        voo1 = Voo.objects.get(codigoVoo = 'PCS002GRU')
+        Historico.objects.create (
+            chaveVoo = voo1,
+            id_historico = 1,
+            horarioPartidaReal = '17:39',
+            horarioChegadaReal = '19:42',
+            data = '04/02/2020',
+            estado = 'embarcando'
+        )
+
+    def teste_historico(self):
+        historico1 = Historico.objects.get(id_historico = 1)
+        self.assertEqual(historico1.chaveVoo.codigoVoo, 'PCS002GRU')
