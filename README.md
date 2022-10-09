@@ -8,18 +8,31 @@
 
 # Instalação
 
-Primeiramente, abra o **Powershell** e clone o repositório através do seguinte comando:
+Primeiramente, abra o seu prompt de comando e clone o repositório através do seguinte comando:
 
 ```sh
 git clone https://github.com/augustovillar/lab_soft_proj_MEAU.git
 ```
 
-Após isso, entre na pasta do repositório clonado, ative o ambiente virtual e instale as dependências:
+Após isso, entre na pasta do repositório clonado e ative o ambiente virtual:
 
 ```sh
 cd lab_soft_proj_MEAU
 python -m venv env
+```
+
+Para Windows (PowerShell):
+```sh
 .\env\scripts\Activate.ps1
+```
+
+Para Linux e Mac:
+```sh
+source env/bin/activate
+```
+
+É necessário instalar as dependencias no ambiente com o seguinte comando:
+```sh
 pip install -r requirements.txt
 ```
 
