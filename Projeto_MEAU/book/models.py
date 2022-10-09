@@ -1,28 +1,24 @@
 from django.db import models
-
+import datetime
 # Create your models here.
+
 class Voo(models.Model):
-    id_voo = models.IntegerField(primary_key=True)
-    codigoVoo = models.CharField(max_length=12, null=False)
-    aeroportoOrigem = models.CharField(max_length=200, null=False)
-    aeroportoDestino = models.CharField(max_length=200, null=False)
-    horarioPartidaProgramado = models.DateTimeField(null=False)
-    horarioChegadaProgramado = models.DateTimeField(null=False)
-    rota = models.CharField(max_length=10, null=False)
+    id = models.IntegerField(primary_key=True)
+    codigoVoo = models.CharField(max_length=12, null=False, unique=True) # this field must be unique throughout the table
+    origem = models.CharField(max_length=30, null=True)
+    destino = models.CharField(max_length=30, null=True)
+    horarioPartidaProgramado = models.TimeField(null=True)
+    horarioChegadaProgramado = models.TimeField(null=True)
     companhia = models.CharField(max_length=200, null=False)
     class Meta:
         db_table = 'voo'
 
 class Historico(models.Model):
-    id_historico = models.IntegerField(primary_key=True)
-    historicoPartidaReal = models.DateTimeField(null=False)
-    horarioChegadaReal = models.DateTimeField(null=False)
-    data = models.DateTimeField(auto_now=False)
-    estado = models.CharField(max_length=20, null=False)
+    id = models.IntegerField(primary_key=True)
+    voo = models.ForeignKey(Voo, on_delete=models.CASCADE, null=True)
+    data = models.DateField(null=True) #data referente ao aeroporto de SP - se o voo chegou é a data de chegada, se foi embora é a data de partida
+    horarioPartidaReal = models.TimeField(null=True)
+    horarioChegadaReal = models.TimeField(null=True)
+    status = models.CharField(max_length=30, null=True)
     class Meta:
         db_table = 'historico'
-
-#tabela da relação entre Voo e Historico (organização)
-class Relacao(models.Model):
-    id_historico = models.ForeignKey(Historico, on_delete=models.CASCADE)
-    id_voo = models.ForeignKey(Voo, on_delete=models.CASCADE)

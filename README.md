@@ -14,11 +14,15 @@ Primeiramente, abra o **Powershell** e clone o repositório através do seguinte
 git clone https://github.com/augustovillar/lab_soft_proj_MEAU.git
 ```
 
-Após isso, entre na pasta do repositório clonado e ative o ambiente virtual:
+Após isso, entre na pasta do repositório clonado, ative o ambiente virtual e instale as dependências:
+
 ```sh
 cd lab_soft_proj_MEAU
-.\env\bin\Activate.ps1
+python -m venv env
+.\env\scripts\Activate.ps1
+pip install -r requirements.txt
 ```
+
 Após esse último comando, o nome do seu ambiente deve aparecer no terminal ("env").
 
 # Executando o Programa
