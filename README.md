@@ -5,6 +5,9 @@
     * Augusto Barbosa Villar Silva - 11831853
     * Matheus Tavares de Andrade - 10346662
     * Emilly da Silva Arcanjo - 11808105
+# Pré-requisitos
+
+Para utilizar este repositório você precisa ter Python 3.7 instalado e acesso a um terminal de linha de comando.
 
 # Instalação
 
@@ -53,4 +56,11 @@ Para desativar a aplicação, basta pressionar CTRL + C. Para sair do ambiente v
 
 ``` sh
 deactivate
+```
+
+# Executando os Testes
+Para a crição do banco de dados, é necessário rodar o seguinte comando:
+```sh
+cd .\Projeto_MEAU\
+python manage.py test
 ```
