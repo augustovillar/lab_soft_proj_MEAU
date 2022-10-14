@@ -59,7 +59,26 @@ deactivate
 ```
 
 # Executando os Testes
-Para a crição do banco de dados, é necessário rodar o seguinte comando:
+Para a execução dos testes, é necessário iniciar o ambiente do projeto com os sgeuintes comandos:
+
+Para Windows (PowerShell):
+```sh
+.\env\scripts\Activate.ps1
+```
+
+Para Linux e Mac:
+```sh
+source env/bin/activate
+```
+
+Após criar as classes, é preciso criar uma migração e executar a migração. Para isso, na pasta onde está o script manage.py digite:
+```sh
+python manage.py makemigrations
+python manage.py migrate
+```
+
+Para executar os teste, é necessário seguir os seguintes passos:
+
 ```sh
 cd .\Projeto_MEAU\
 python manage.py test
