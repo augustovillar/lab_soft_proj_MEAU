@@ -19,5 +19,20 @@ from book import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('FIRST', views.bookview),
+    path('atrasos', views.atrasos),
+    path('atualizar', views.atualizar),
+    path('cadastrar', views.cadastrar),
+    path('cancelamento', views.cancelamento),
+    path('consultar', views.consultar),
+    path('crud', views.crud),
+    path('dinamico', views.dinamico),
+    path('modificar', views.modificar),
+    path('relatorio', views.relatorio),
+    path('remover', views.remover),
+    path('visualizavoo', views.visualizavoo),
+    path('homepage', views.homepage),
+    path('login', views.login),
+    path('monitoring', views.monitoring),
+    path('preenchimento', views.preenchimento),
+    path('reports', views.reports),
 ]
