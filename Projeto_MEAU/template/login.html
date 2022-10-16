@@ -20,19 +20,15 @@
             var user = document.getElementById("usuario").value;
 
             if (user === "operador") {
-                window.location.assign ("CRUD");
+                window.location.assign ("crud");
             }
 
-            else if (user === "funcionário") {
+            else if (user === "funcionario") {
                 window.location.assign ("monitoring");
             }
 
             else if (user === "gerente") {
                 window.location.assign ("reports");
-            }
-
-            else {
-                window.location.assign("homepage");
             }
         }
     </script>

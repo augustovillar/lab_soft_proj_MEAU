@@ -6,9 +6,6 @@ from django.shortcuts import render
 def crud(request):
     return render(request, "crud.html")
 
-def homepage(request):
-    return render(request, "homepage.html")
-
 def login(request):
     return render(request, "login.html")
 
@@ -48,8 +45,11 @@ def relatorio(request):
 def remover(request):
     return render(request, "remover.html")
 
-def preenchimento(request):
-    return render(request, "preenchimento.html")
+def preenchimentoAtrasos(request):
+    return render(request, "preenchimentoAtrasos.html")
+
+def preenchimentoCancelamentos(request):
+    return render(request, "preenchimentoCancelamentos.html")
 
 def visualizavoo(request):
     return render(request, "visualizavoo.html")

@@ -30,9 +30,9 @@ urlpatterns = [
     path('relatorio', views.relatorio),
     path('remover', views.remover),
     path('visualizavoo', views.visualizavoo),
-    path('homepage', views.homepage),
     path('login', views.login),
     path('monitoring', views.monitoring),
-    path('preenchimento', views.preenchimento),
+    path('preenchimentoAtrasos', views.preenchimentoAtrasos),
+    path('preenchimentoCancelamentos', views.preenchimentoCancelamentos),
     path('reports', views.reports),
 ]
