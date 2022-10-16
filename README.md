@@ -17,29 +17,28 @@ Primeiramente, abra o seu prompt de comando e clone o repositório através do s
 git clone https://github.com/augustovillar/lab_soft_proj_MEAU.git
 ```
 
-Após isso, entre na pasta do repositório clonado e ative o ambiente virtual:
+Após isso, entre na pasta do repositório clonado, crie e ative o ambiente virtual:
 
 ```sh
 cd lab_soft_proj_MEAU
 python -m venv env
 ```
 
-Para Windows (PowerShell):
+Para ativar o ambiente virtual no Windows (PowerShell):
 ```sh
 .\env\scripts\Activate.ps1
 ```
 
-Para Linux e Mac:
+Para ativar o ambiente virtual no Linux e Mac:
 ```sh
 source env/bin/activate
 ```
+Com esse último comando, o nome do seu ambiente deve aparecer no terminal ("env").
 
-É necessário instalar as dependencias no ambiente com o seguinte comando:
+Por fim, é necessário instalar as dependencias no ambiente com o seguinte comando:
 ```sh
 pip install -r requirements.txt
 ```
-
-Após esse último comando, o nome do seu ambiente deve aparecer no terminal ("env").
 
 # Executando o Programa
 
@@ -50,9 +49,11 @@ cd Projeto_MEAU
 python manage.py runserver
 ```
 
-Após isso, a aplicação pode ser visualizada no seguinte endereço (acessar via navegador web): [http://localhost:8000/FIRST](http://localhost:8000/FIRST)
+Após isso, a aplicação pode ser visualizada no seguinte endereço (acessar via navegador web): [http://localhost:8000/login](http://localhost:8000/login)
 
-Para desativar a aplicação, basta pressionar CTRL + C. Para sair do ambiente virtual (env), basta executar o seguinte comando:
+Para desativar a aplicação, basta pressionar CTRL + C. 
+
+Para sair do ambiente virtual (env), basta executar o seguinte comando:
 
 ``` sh
 deactivate
@@ -83,3 +84,22 @@ Para executar os teste, é necessário seguir os seguintes passos:
 cd .\Projeto_MEAU\
 python manage.py test
 ```
+# Utilizando o sistema
+
+Na tela de login, preencha o campo "usuário" com um dos seguintes nomes para acessar as telas citadas abaixo e clique em "entrar":
+
+- Digite `operador` para acessar a tela de CRUD (criação, remoção, atualização e consulta do cadastro de um voo).
+- Digite `funcionario` para acessar a tela de monitoramento, que permite a atualização do status e do horário de chegada e partida real do voo.
+- Digite `gerente` para acessar a tela de relatórios.
+
+As transições entre as telas do CRUD(criação, remoção, atualização e consulta do cadastro de um voo) podem ser vistas na imagem abaixo:
+
+![Alt text](Entregas/tela_de_CRUD.png?raw=true "Diagrama tela de CRUD")
+
+As transições entre as telas do monitoramento podem ser vistas na imagem abaixo:
+
+![Alt text](Entregas/tela_de_monitoramento.png?raw=true "Diagrama tela de monitoramento")
+
+As transições entre as telas da geração de relatórios podem ser vistas na imagem abaixo:
+
+![Alt text](Entregas/tela_de_relatorios.png?raw=true "Diagrama tela de relatorios")
