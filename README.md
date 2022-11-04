@@ -51,6 +51,8 @@ python manage.py runserver
 
 Após isso, a aplicação pode ser visualizada no seguinte endereço (acessar via navegador web): [http://localhost:8000/login](http://localhost:8000/login)
 
+Para acessar as outras telas, use os links da seção "Utilizando o sistema".
+
 Para desativar a aplicação, basta pressionar CTRL + C. 
 
 Para sair do ambiente virtual (env), basta executar o seguinte comando:
@@ -92,7 +94,27 @@ Na tela de login, preencha o campo "usuário" com um dos seguintes nomes para ac
 - Digite `funcionario` para acessar a tela de monitoramento, que permite a atualização do status e do horário de chegada e partida real do voo.
 - Digite `gerente` para acessar a tela de relatórios.
 
-As transições entre as telas do CRUD(criação, remoção, atualização e consulta do cadastro de um voo) podem ser vistas na imagem abaixo:
+Para acessar as telas diretamente, use os links listados abaixo.
+
+- [http://localhost:8000/login/](http://localhost:8000/login/)
+
+- [http://localhost:8000/crud/](http://localhost:8000/crud/)
+- [http://localhost:8000/atualizar/](http://localhost:8000/atualizar/)
+- [http://localhost:8000/modificar/](http://localhost:8000/modificar/)
+- [http://localhost:8000/cadastrar/](http://localhost:8000/cadastrar/)
+- [http://localhost:8000/consultar/](http://localhost:8000/consultar/)
+- [http://localhost:8000/remover/](http://localhost:8000/remover/)
+- [http://localhost:8000/visualizavoo/](http://localhost:8000/visualizavoo/)
+
+- [http://localhost:8000/monitoring/](http://localhost:8000/monitoring/)
+- [http://localhost:8000/dinamico/](http://localhost:8000/dinamico/)
+
+- [http://localhost:8000/reports/](http://localhost:8000/reports/)
+- [http://localhost:8000/preenchimentoAtrasos/](http://localhost:8000/preenchimentoAtrasos/)
+- [http://localhost:8000/preenchimentoCancelamentos/](http://localhost:8000/preenchimentoCancelamentos/)
+- [http://localhost:8000/relatorio/](http://localhost:8000/relatorio/)
+
+As transições entre as telas do CRUD(criação, remoção, atualização e consulta do cadastro de um voo) podem ser vistas na imagem abaixo. 
 
 ![Alt text](Entregas/tela_de_CRUD.png?raw=true "Diagrama tela de CRUD")
 

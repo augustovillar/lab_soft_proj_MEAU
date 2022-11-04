@@ -19,10 +19,8 @@ from book import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('atrasos/', views.atrasos),
     path('atualizar/', views.atualizar),
     path('cadastrar/', views.cadastrar),
-    path('cancelamento/', views.cancelamento),
     path('consultar/', views.consultar),
     path('crud/', views.crud),
     path('dinamico/', views.dinamico),
