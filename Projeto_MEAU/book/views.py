@@ -1,9 +1,11 @@
-import re
 from django.shortcuts import render
+from .models import Voo, Historico
+from .forms import atualizaVoo, criaVoo
 
 # Create your views here.
 
 def crud(request):
+
     return render(request, "crud.html")
 
 def login(request):
@@ -22,10 +24,22 @@ def atrasos(request):
     return render(request, "atrasos.html")
 
 def atualizar(request):
-    return render(request, "atualizar.html")
+    if request.method == "POST":
+        form = atualizaVoo(request.POST)
+        if form.is_valid():
+            form.update()
+    else:
+        form = atualizaVoo()
+    return render(request, "atualizar.html", {'form': form})
 
 def cadastrar(request):
-    return render(request, "cadastrar.html")
+    if request.method == "POST":
+        form = criaVoo(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = criaVoo()
+    return render(request, "cadastrar.html", {'form': form})
 
 def cancelamento(request):
     return render(request, "cancelamento.html")
