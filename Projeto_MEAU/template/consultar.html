@@ -120,10 +120,21 @@
             <div>
                 <div>
                     <h4 class="mb-3">Informações Necessárias</h4>
-                    <form class="needs-validation" method="post">
+                    <form class="needs-validation" action="{% url 'consultar' %}" method="POST">
+                        
                         <div class="row g-3">
-                            {% csrf_token %}
-                            {{ form.as_p }}
+                            <div class="form-group">
+                               <div class="col-12">
+                                {% csrf_token %}
+                                <label for="codigoVoo" class="form-label">Código do Voo</label>
+                                <div class="input-group has-validation">
+                                    <input name = "busca" type="text" class="form-control" id="codigoVoo" pattern="^[A-Z]{3}[0-9]{3}\_[A-Z]{3,4}-[A-Z]{3,4}$"
+                                        placeholder="Ex: PCS001_SSA-GRU ou PCS001_SBAM-GRU" required>
+                                    <div class="invalid-feedback">
+                                        Coloque um código válido.
+                                    </div>
+                                </div>
+                            </div>
                             <!-- <div class="col-12">
                                 <label for="codigoVoo" class="form-label">Código do Voo</label>
                                 <div class="input-group has-validation">
@@ -147,7 +158,26 @@
                     </form>
                 </div>
             </div>
-            
+
+            <table class="table">
+                  <tr>
+                    <th scope="col">Voo</th>
+                    <th scope="col">Companhia aérea</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Partida prevista</th>
+                    <th scope="col">Partida real</th>
+                  </tr>
+                {% for x in voos %}
+                  <tr>
+                    <th scope="row">{{ x.codigoVoo }}</th>
+                    <td>{{ x.companhia }}k</td>
+                    <td>{{ x.destino }}</td>
+                    <td>{{ x.horarioPartidaProgramado}}</td>
+                  </tr>
+                  {% endfor %}
+                  
+              </table>
+
         </main>
 
         <footer class="text-muted py-5">
