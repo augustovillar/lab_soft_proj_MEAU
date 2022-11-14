@@ -4,29 +4,28 @@ from .models import Voo, Historico
 
 class criaVoo(forms.ModelForm):
 
-    class Meta:
+      class Meta:
         model = Voo
-        fields = ['codigoVoo', 'companhia', 'origem', 'destino', 'horarioPartidaProgramado', 'horarioChegadaProgramado']
+        fields = ['codigoVoo', 'companhia', 'origem', 'destino', 'horarioProgramado', ]
         labels = {
             'codigoVoo':"Código Voo",
             'companhia': "Companhia",
             'origem': "Origem",
             'destino': "Destino",
-            'horarioPartidaProgramado': "Horário de Partida Programado",
-            'horarioChegadaProgramado': "Horário de Chegada Programado"
+            'horarioProgramado': "Horário Programado",
+            
         }
 
 class atualizaVoo(forms.ModelForm):
 
     class Meta:
         model = Voo
-        fields = ['codigoVoo', 'companhia', 'destino', 'horarioPartidaProgramado', 'horarioChegadaProgramado', 'origem',]
+        fields = ['codigoVoo', 'companhia', 'origem', 'destino', 'horarioProgramado',]
         labels = {
             'codigoVoo':"Código Voo",
             'companhia': "Companhia",
-            'destino': "Destino",
-            'horarioPartidaProgramado': "Horário Partida",
-            'horarioChegadaProgramado': "Horário Chegada",
             'origem': "Origem",
+            'destino': "Destino",
+            'horarioProgramado': "Horário Programado",
         }
 
