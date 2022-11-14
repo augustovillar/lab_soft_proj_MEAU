@@ -30,5 +30,3 @@ class atualizaVoo(forms.ModelForm):
             'origem': "Origem",
         }
 
-class buscaVoo(forms.Form):
-    codigoVoo = forms.CharField(max_length=12)
