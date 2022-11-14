@@ -1,11 +1,10 @@
 from django.shortcuts import redirect, render
 from .models import Voo, Historico
-from .forms import buscaVoo, atualizaVoo, criaVoo
+from .forms import atualizaVoo, criaVoo
 
 # Create your views here.
 
 def crud(request):
-
     return render(request, "crud.html")
 
 def login(request):
@@ -45,13 +44,15 @@ def cancelamento(request):
     return render(request, "cancelamento.html")
 
 def consultar(request):
-    if request.method == "POST":
-        form = buscaVoo(request.POST)
-        if form.is_valid():
-            return redirect("visualizavoo")
-    else:
-        form = buscaVoo()
-    return render(request, "consultar.html", {'form': form})
+   
+    historicos = Historico.objects.all()
+    voos = Voo.objects.all()
+    
+    if request.method == 'POST':
+        codigo = request.POST['busca']
+        voos = voos.filter(codigoVoo=codigo)
+            
+    return render(request, "consultar.html", {'voos': voos})
 
 def dinamico(request):
     return render(request, "dinamico.html")
