@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('atualizar/', views.atualizar),
     path('cadastrar/', views.cadastrar),
-    path('consultar/', views.consultar),
+    path('consultar/', views.consultar, name = "consultar"),
     path('crud/', views.crud),
     path('dinamico/', views.dinamico),
     path('modificar/', views.modificar),
