@@ -18,13 +18,24 @@ class Voo(models.Model):
         return f'{self.codigoVoo}'
 
 class Historico(models.Model):
+
+    class Status(models.TextChoices):
+            EMBARCANDO = 'EMBARCANDO'
+            CANCELADO = 'CANCELADO'
+            PROGRAMADO = 'PROGRAMADO'
+            TAXIANDO = 'TAXIANDO'
+            PRONTO = 'PRONTO'
+            AUTORIZADO = 'AUTORIZADO'
+            EM_VOO = 'EM_VOO'
+            ATERRISSADO = 'ATERRISSADO'
+            
     # id = models.IntegerField(primary_key=True)
     id = models.AutoField(primary_key=True)
     voo  = models.ForeignKey(Voo, null=True, on_delete=models.SET_NULL)
     data = models.DateField(null=True) #data referente ao aeroporto de SP - se o voo chegou é a data de chegada, se foi embora é a data de partida
     horarioPartidaReal = models.TimeField(null=True)
     horarioChegadaReal = models.TimeField(null=True)
-    status = models.CharField(max_length=30, null=True)
+    status = models.CharField(choices=Status.choices, max_length=30, null=True)
     class Meta:
         db_table = 'historico'
     
