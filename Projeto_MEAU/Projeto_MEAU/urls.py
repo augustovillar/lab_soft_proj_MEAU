@@ -28,7 +28,7 @@ urlpatterns = [
     path('relatorio/', views.relatorio),
     path('remover/', views.remover),
     path('visualizavoo/', views.visualizavoo, name="visualizavoo"),
-    path('login/', views.login),
+    path('login/', views.login, name="login"),
     path('monitoring/', views.monitoring),
     path('preenchimentoAtrasos/', views.preenchimentoAtrasos),
     path('preenchimentoCancelamentos/', views.preenchimentoCancelamentos),
