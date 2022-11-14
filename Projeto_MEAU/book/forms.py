@@ -6,14 +6,14 @@ class criaVoo(forms.ModelForm):
 
     class Meta:
         model = Voo
-        fields = ['codigoVoo', 'companhia', 'destino', 'horarioPartidaProgramado', 'horarioChegadaProgramado', 'origem',]
+        fields = ['codigoVoo', 'companhia', 'origem', 'destino', 'horarioPartidaProgramado', 'horarioChegadaProgramado']
         labels = {
             'codigoVoo':"Código Voo",
             'companhia': "Companhia",
-            'destino': "Destino",
-            'horarioPartidaProgramado': "Horário Partida",
-            'horarioChegadaProgramado': "Horário Chegada",
             'origem': "Origem",
+            'destino': "Destino",
+            'horarioPartidaProgramado': "Horário de Partida Programado",
+            'horarioChegadaProgramado': "Horário de Chegada Programado"
         }
 
 class atualizaVoo(forms.ModelForm):
@@ -29,3 +29,6 @@ class atualizaVoo(forms.ModelForm):
             'horarioChegadaProgramado': "Horário Chegada",
             'origem': "Origem",
         }
+
+class buscaVoo(forms.Form):
+    codigoVoo = forms.CharField(max_length=12)

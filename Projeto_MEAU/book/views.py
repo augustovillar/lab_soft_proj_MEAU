@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Voo, Historico
-from .forms import atualizaVoo, criaVoo
+from .forms import buscaVoo, atualizaVoo, criaVoo
 
 # Create your views here.
 
@@ -30,7 +30,7 @@ def atualizar(request):
             form.update()
     else:
         form = atualizaVoo()
-    return render(request, "atualizar.html", {'form': form})
+    return render(request, "atualizar.html", {'form': form})    
 
 def cadastrar(request):
     if request.method == "POST":
@@ -45,7 +45,13 @@ def cancelamento(request):
     return render(request, "cancelamento.html")
 
 def consultar(request):
-    return render(request, "consultar.html")
+    if request.method == "POST":
+        form = buscaVoo(request.POST)
+        if form.is_valid():
+            return redirect("visualizavoo")
+    else:
+        form = buscaVoo()
+    return render(request, "consultar.html", {'form': form})
 
 def dinamico(request):
     return render(request, "dinamico.html")

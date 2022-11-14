@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from book.models import Voo, Historico
+
+admin.site.register(Voo)
+
+admin.site.register(Historico)

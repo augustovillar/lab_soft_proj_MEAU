@@ -120,9 +120,11 @@
             <div>
                 <div>
                     <h4 class="mb-3">Informações Necessárias</h4>
-                    <form class="needs-validation" novalidate>                     
+                    <form class="needs-validation" method="post">
                         <div class="row g-3">
-                            <div class="col-12">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <!-- <div class="col-12">
                                 <label for="codigoVoo" class="form-label">Código do Voo</label>
                                 <div class="input-group has-validation">
                                     <input type="text" class="form-control" id="codigoVoo" pattern="^[A-Z]{3}[0-9]{3}\_[A-Z]{3,4}-[A-Z]{3,4}$"
@@ -131,7 +133,7 @@
                                         Coloque um código válido.
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <hr class="my-4">
                             
@@ -141,6 +143,7 @@
                             <div class="col-sm-6">
                                 <button type="button" class="w-100 btn btn-primary btn-lg" onclick="cancela()">Cancelar</button>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
