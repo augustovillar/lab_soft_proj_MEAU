@@ -85,6 +85,14 @@
 </head>
 
 <body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
     <header>
         <div class="collapse navbar-dark bg-primary" id="navbarHeader">
           <div class="container">
@@ -255,6 +263,7 @@
                 <button onclick="redireciona5()" class="btn btn-light me-md-2" type="button" style="--bs-btn-bg: #e5e6e5">Sair</button>
             </div>
         </div>
+
     </main>
 </body>
 
