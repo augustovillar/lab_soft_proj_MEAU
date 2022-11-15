@@ -2,16 +2,16 @@
 <html lang="pt-br">
 
     <script type="text/javascript">
-        function visualizavoo(){
-            window.location.assign ("../atualizar");
+        function deleta(){
+            window.location.assign ("../crud");
         }
-        function cancela(){
+        function redireciona(){
             window.location.assign ("../crud");
         }
     </script>
 
 <head>
-    <title>Consulta de Voo</title>
+    <title>Deleção de Voo</title>
 
 
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
@@ -72,7 +72,6 @@
 
     <!-- Custom styles for this template -->
     <link href="../static/js/form-validation.js" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 </head>
 
 <body class="bg-light">
@@ -114,22 +113,19 @@
         <main>
             <div class="py-5 text-center">
                 <!-- <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-                <h2>Tela de Atualização de Voo</h2>
-                <p class="lead">Nessa tela, é necessário o código do voo que você deseja atualizar. Caso exista alguma inconsistência, o sistema avisará.</p>
+                <h2>Tela de Deleção de Voo</h2>
+                <p class="lead">Nessa tela, é necessário o código de voo para ser deletado. Caso exista alguma inconsistência, o sistema avisará.</p>
             </div>
 
             <div>
                 <div>
                     <h4 class="mb-3">Informações Necessárias</h4>
-                    <form class="needs-validation" action="{% url 'partidas' %}" method="POST">
-                        
+                    <form class="needs-validation" novalidate>                     
                         <div class="row g-3">
-                            <div class="form-group">
-                               <div class="col-12">
-                                {% csrf_token %}
+                            <div class="col-12">
                                 <label for="codigoVoo" class="form-label">Código do Voo</label>
                                 <div class="input-group has-validation">
-                                    <input name = "buscaAtualizacao" type="text" class="form-control" id="codigoVoo" pattern="^[A-Z]{3}[0-9]{3}\_[A-Z]{3,4}-[A-Z]{3,4}$"
+                                    <input type="text" class="form-control" id="codigoVoo" pattern="^[A-Z]{3}[0-9]{3}\_[A-Z]{3,4}-[A-Z]{3,4}$"
                                         placeholder="Ex: PCS001_SSA-GRU ou PCS001_SBAM-GRU" required>
                                     <div class="invalid-feedback">
                                         Coloque um código válido.
@@ -140,38 +136,15 @@
                             <hr class="my-4">
                             
                             <div class="col-sm-6">
-                                <button class="w-100 btn btn-primary btn-lg" type="submit" onclick="visualizavoo()">Buscar</button>
+                                <button class="w-100 btn btn-primary btn-lg" type="submit">Deletar</button>
                             </div>
                             <div class="col-sm-6">
-                                <button type="button" class="w-100 btn btn-primary btn-lg" onclick="cancela()">Cancelar</button>
+                                <button type="button" class="w-100 btn btn-primary btn-lg" onclick="redireciona()">Cancelar</button>
                             </div>
-                        </div>
                     </form>
                 </div>
             </div>
-
-            <table class="table">
-                  <tr>
-                    <th scope="col">Voo</th>
-                    <th scope="col">Companhia aérea</th>
-                    <th scope="col">Origem</th>
-                    <th scope="col">Destino</th>
-                    <th scope="col">Horario programado</th>
-                    <th scope="col">Editar</th>   
-                  </tr>
-                {% for x in voos %}
-                    <tr>
-                        <th scope="row">{{ x.codigoVoo }}</th>
-                        <td>{{ x.companhia }}</td>
-                        <td>{{ x.origem }}</td>
-                        <td>{{ x.destino }}</td>
-                        <td>{{ x.horarioProgramado}}</td>
-                        <td><p data-placement="top" data-toggle="tooltip" title="Editar"><a type = "input" name = "atualiza" href="{% url 'modificar'%}" class="btn btn-primary btn-xs" ><span class="glyphicon glyphicon-pencil"></span></a></p></td>
-                    </tr>
-                {% endfor %}
-                  
-              </table>
-
+            
         </main>
 
         <footer class="text-muted py-5">
@@ -185,7 +158,10 @@
           <script src="../static/js/bootstrap.bundle.min.js"></script>
     </div>
 
+
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+
     <script src="../static/js/form-validation.js"></script>
 </body>
 
-</html> 
+</html>

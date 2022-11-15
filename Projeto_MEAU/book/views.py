@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from .models import Voo, Historico
-from .forms import atualizaVoo, criaVoo
+from .forms import criaVoo
 from django.shortcuts import redirect
 from django.contrib import messages
 
@@ -12,14 +12,44 @@ def login(request):
 def crud(request):
     return render(request, "crud.html")
 
+# def atualizarOriginal(request):
+#     if request.method == "POST":
+#         form = atualizaVoo(request.POST)
+#         if form.is_valid():
+#             form.update()
+#     else:
+#         form = atualizaVoo()
+#     return render(request, "atualizar.html", {'form': form})    
+
 def atualizar(request):
-    if request.method == "POST":
-        form = atualizaVoo(request.POST)
+    historicos = Historico.objects.all()
+    voos = Voo.objects.all()
+    
+    if request.method == 'POST':
+        codigo = request.POST['buscaAtualizacao']
+        voos = voos.filter(codigoVoo=codigo)
+            
+    return render(request, "atualizar.html", {'voos': voos})
+
+def modificar(request):
+    
+    if request.method =='POST':
+        codigo = request.POST['atualiza']
+        voo = Voo.objects.get(id=id)
+        form = criaVoo(request.POST, instance=voo)
         if form.is_valid():
-            form.update()
+            form.save()
+            return redirect('atualizar')
     else:
-        form = atualizaVoo()
-    return render(request, "atualizar.html", {'form': form})    
+        form = criaVoo(instance=voo)
+    
+    form = criaVoo()
+
+    return render(request,
+                'modificar.html',
+                {'form': form})
+
+
 
 def cadastrar(request):
     if request.method == "POST":
@@ -55,10 +85,6 @@ def chegadas(request):
         voos = voos.filter(codigoVoo=codigo)
             
     return render(request, "chegadas.html", {'voos': voos})
-
-
-def modificar(request):
-    return render(request, "modificar.html")
 
 def monitoring(request):
     return render(request, "monitoring.html")
