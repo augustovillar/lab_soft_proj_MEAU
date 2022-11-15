@@ -2,6 +2,7 @@ from django.db import models
 # Create your models here.
 
 class Voo(models.Model):
+    # id = models.IntegerField(primary_key=True)
     id = models.AutoField(primary_key=True)
     codigoVoo = models.CharField(max_length=14, unique=True) # this field must be unique throughout the table
     companhia = models.CharField(max_length=20)
