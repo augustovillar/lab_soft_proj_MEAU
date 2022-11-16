@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path
 from book import views
 
+handler500 = 'book.views.handle500'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.login, name="login"),

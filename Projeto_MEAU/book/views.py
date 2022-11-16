@@ -6,6 +6,9 @@ from django.contrib import messages
 
 # Create your views here.
 
+def handle500(request):
+    return render(request, "handle500.html")
+
 def login(request):
     return render(request, "login.html")
 
