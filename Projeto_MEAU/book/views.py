@@ -51,16 +51,17 @@ def modificar(request):
 
 
 
-def cadastrar(request):
-    if request.method == "POST":
-        form = criaVoo(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'O voo foi cadastrado com sucesso.')
-            return redirect('crud')
-    else:
-        form = criaVoo()
-    return render(request, "cadastrar.html", {'form': form})
+def createView(request):
+    if (request.method == 'POST'):
+        codigoVoo = request.POST.get("cadastroCodigoVoo")
+        companhia = request.POST.get("cadastroCompanhia")
+        origem = request.POST.get("cadastroOrigem")
+        destino = request.POST.get("cadastroDestino")
+        horarioProgramado = request.POST.get("cadastroHorarioProgramado")
+        messages.success(request, 'O voo foi cadastrado com sucesso.')
+        Voo.objects.create(codigoVoo=codigoVoo, companhia=companhia,
+                       origem=origem, destino=destino, horarioProgramado=horarioProgramado)
+    return render(request, "cadastrar.html")
 
 def consultar(request):
     return render(request, "consultar.html")
