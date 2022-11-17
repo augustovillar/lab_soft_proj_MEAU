@@ -52,6 +52,7 @@ def createView(request):
         messages.success(request, 'O voo foi cadastrado com sucesso.')
         Voo.objects.create(codigoVoo=codigoVoo, companhia=companhia,
                        origem=origem, destino=destino, horarioProgramado=horarioProgramado)
+
     return render(request, "cadastrar.html")
 
 def consultar(request):
@@ -77,8 +78,8 @@ def monitoring(request):
 def reports(request):
     return render(request, "reports.html")
 
-def atrasos(request):
-    return render(request, "atrasos.html")
+# def atrasos(request):
+#     return render(request, "atrasos.html")
 
 def dinamico(request):
     if request.method == 'POST':
@@ -116,7 +117,45 @@ def confirmaRemover(request, codigoVoo):
     return redirect("remover")
 
 def preenchimentoAtrasos(request):
+    historicos = Historico.objects.all()
+    print("OLA TESTE")
+    print(request)
+    if request.method == 'POST':
+        listaNames = ['origem', 'destino', 'dataInicio', 'dataFinal', 'codigoEmpresa', 'codigoAeroporto', 'madrugada', 'manha', 'tarde', 'noite']
+        listaRespostas = list()
+
+        for i in range(len(listaNames)):
+            try:
+                listaRespostas.append(request.POST[listaNames[i]])
+            except Exception as e:
+                listaRespostas.append('off')
+        print(listaRespostas)
+
+        # destino = request.POST['destino']
+        # dataInicio = request.POST['dataInicio']
+        # dataFinal = request.POST['dataFinal']
+        # codigoEmpresa = request.POST['codigoEmpresa']
+        # codigoAeroporto = request.POST['codigoAeroporto']
+
+        # madrugada = request.POST['madrugada']
+        # manha = request.POST['manha']
+        # tarde = request.POST['tarde']
+        # noite = request.POST['noite']
+
+        # print(origem+" "+destino+" "+dataInicio+" "+dataFinal+" "+codigoEmpresa+" "+codigoAeroporto+" "+madrugada+" "+manha+" "+tarde+" "+noite)
+
+
     return render(request, "preenchimentoAtrasos.html")
+
+# def monitoring(request):
+#     historicos = Historico.objects.all()
+#     voos = Voo.objects.all()
+    
+#     if request.method == 'POST':
+#         codigo = request.POST['buscaVoos']
+#         voos = voos.filter(codigoVoo__icontains=codigo)
+            
+#     return render(request, "monitoring.html", {'voos': voos,'historicos': historicos})
 
 def preenchimentoCancelamentos(request):
     return render(request, "preenchimentoCancelamentos.html")
