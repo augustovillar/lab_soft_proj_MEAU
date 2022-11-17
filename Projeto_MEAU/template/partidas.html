@@ -166,6 +166,14 @@
                             <td>{{ x.companhia }}</td>
                             <td>{{ x.destino }}</td>
                             <td>{{ x.horarioProgramado}}</td>
+                            {% for h in historicos %}
+                                {% if x.codigoVoo == h.voo.codigoVoo %}
+                                    <td>{{h.horarioReal}}</td>
+                                    <td>{{h.data}}</td>
+                                    <td>{{h.status}}</td>
+                                {% endif %}
+                            {% endfor %}
+                            
                         </tr>
                     {% endif %}
                 {% endfor %}
