@@ -76,28 +76,6 @@ def consultar(request):
             
     return render(request, "consultar.html", {'voos': voos})
 
-
-def partidas(request):
-    historicos = Historico.objects.all()
-    voos = Voo.objects.all()
-    
-    if request.method == 'POST':
-        codigo = request.POST['buscaPartidas']
-        voos = voos.filter(codigoVoo=codigo)
-            
-    return render(request, "partidas.html", {'voos': voos,'historicos': historicos})
-
-
-def chegadas(request):
-    historicos = Historico.objects.all()
-    voos = Voo.objects.all()
-    
-    if request.method == 'POST':
-        codigo = request.POST['buscaChegadas']
-        voos = voos.filter(codigoVoo=codigo)
-            
-    return render(request, "chegadas.html", {'voos': voos})
-
 def monitoring(request):
     historicos = Historico.objects.all()
     voos = Voo.objects.all()
@@ -127,10 +105,6 @@ def dinamico(request):
     return render(request,
                 'dinamico.html',
                 {'form': form})
-
-
-def modificar(request):
-    return render(request, "modificar.html")
 
 def cancelamento(request):
     return render(request, "cancelamento.html")

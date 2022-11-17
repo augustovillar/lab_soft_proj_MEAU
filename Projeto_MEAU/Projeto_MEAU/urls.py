@@ -13,8 +13,6 @@ urlpatterns = [
     path('modificar/', views.modificar, name = "modificar"),
     path('cadastrar/', views.createView, name = "create"),
     path('consultar/', views.consultar, name = "consultar"),
-    path('partidas/', views.partidas, name="partidas"),
-    path('chegadas/', views.chegadas, name="chegadas"),
 
     path('dinamico/', views.dinamico, name="dinamico"),
     
