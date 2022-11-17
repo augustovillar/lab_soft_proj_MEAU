@@ -82,7 +82,7 @@ def monitoring(request):
     
     if request.method == 'POST':
         codigo = request.POST['buscaVoos']
-        voos = voos.filter(codigoVoo=codigo)
+        voos = voos.filter(codigoVoo__icontains=codigo)
             
     return render(request, "monitoring.html", {'voos': voos,'historicos': historicos})
 
