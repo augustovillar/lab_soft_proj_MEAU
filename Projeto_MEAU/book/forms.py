@@ -16,3 +16,10 @@ class criaVoo(forms.ModelForm):
             
         }
 
+class criaHistorico(forms.ModelForm):
+
+      class Meta:
+        model = Historico
+        fields = '__all__'
+
+
