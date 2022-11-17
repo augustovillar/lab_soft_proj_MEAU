@@ -67,7 +67,15 @@ def createView(request):
     return render(request, "cadastrar.html")
 
 def consultar(request):
-    return render(request, "consultar.html")
+    historicos = Historico.objects.all()
+    voos = Voo.objects.all()
+    
+    if request.method == 'POST':
+        codigo = request.POST['buscaGeral']
+        voos = voos.filter(codigoVoo=codigo)
+            
+    return render(request, "consultar.html", {'voos': voos})
+
 
 def partidas(request):
     historicos = Historico.objects.all()
