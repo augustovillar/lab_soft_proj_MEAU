@@ -1,7 +1,7 @@
 <!doctype html>
 
 <script type="text/javascript">
-    function redireciona1() { window.location.assign("../relatorio"); }
+    function redireciona1() { window.location.assign("../relatorioAtraso"); }
     function redireciona2() { window.location.assign("../reports"); }
 </script>
 
@@ -118,7 +118,9 @@
             <div>
                 <div>
                     <h4 class="mb-3">Informações Necessárias</h4>
-                    <form class="needs-validation" novalidate>
+                    <form action={% url 'create' %} method="post" class="needs-validation">
+
+                        {% csrf_token %}
 
                         <div class="col-12">
 
@@ -131,7 +133,7 @@
                                 </div>
                                 <div class="form-check">
                                     <input id="categoria2" name="partida_chegada" type="checkbox" class="form-check-input">
-                                    <label class="form-check-label" for="categoria1">Destino</label>
+                                    <label class="form-check-label" for="categoria2">Destino</label>
                                 </div>
                             </div>
                         </div>
