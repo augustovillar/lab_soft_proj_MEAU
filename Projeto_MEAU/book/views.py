@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from .models import Voo, Historico
-from .forms import criaVoo
+from .forms import criaVoo, criaHistorico
 from django.shortcuts import redirect
 from django.contrib import messages
 
@@ -85,7 +85,7 @@ def partidas(request):
         codigo = request.POST['buscaPartidas']
         voos = voos.filter(codigoVoo=codigo)
             
-    return render(request, "partidas.html", {'voos': voos})
+    return render(request, "partidas.html", {'voos': voos}, {'historicos': historicos})
 
 
 def chegadas(request):
@@ -108,7 +108,19 @@ def atrasos(request):
     return render(request, "atrasos.html")
 
 def dinamico(request):
-    return render(request, "dinamico.html")
+    if request.method == 'POST':
+        form = criaHistorico(request.POST)
+        if form.is_valid():
+            hist = form.save()
+            return redirect('monitoramento')
+
+    else:
+        form = criaHistorico()
+        
+    return render(request,
+                'dinamico.html',
+                {'form': form})
+
 
 def modificar(request):
     return render(request, "modificar.html")
