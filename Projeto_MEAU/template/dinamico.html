@@ -8,11 +8,15 @@
     </script>
 
 
-    <head>Tela de dados dinâmicos</head>
+    <head>Atualização de dados dinâmicos</head>
 
     <body>
-        <button onclick="redireciona()" type="button" id="finalizar">Finalizar</button>
-        <button onclick="redireciona()" type="button" id="cancelar">Cancelar</button>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Atualizar">
+        </form>
+        <button onclick="redireciona()" type="button" id="cancelar">Voltar</button>
     </body>
 
 </html>
