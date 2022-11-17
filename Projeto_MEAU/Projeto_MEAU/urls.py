@@ -16,13 +16,13 @@ urlpatterns = [
     path('partidas/', views.partidas, name="partidas"),
     path('chegadas/', views.chegadas, name="chegadas"),
 
-    path('dinamico/', views.dinamico),
+    path('dinamico/', views.dinamico, name="dinamico"),
     
     path('relatorio/', views.relatorio),
     path('remover/', views.remover),
    
    
-    path('monitoring/', views.monitoring),
+    path('monitoring/', views.monitoring, name = "monitoramento"),
     path('preenchimentoAtrasos/', views.preenchimentoAtrasos),
     path('preenchimentoCancelamentos/', views.preenchimentoCancelamentos),
     path('reports/', views.reports),
