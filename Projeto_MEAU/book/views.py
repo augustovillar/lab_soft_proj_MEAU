@@ -99,7 +99,14 @@ def chegadas(request):
     return render(request, "chegadas.html", {'voos': voos})
 
 def monitoring(request):
-    return render(request, "monitoring.html")
+    historicos = Historico.objects.all()
+    voos = Voo.objects.all()
+    
+    if request.method == 'POST':
+        codigo = request.POST['buscaVoos']
+        voos = voos.filter(codigoVoo=codigo)
+            
+    return render(request, "monitoring.html", {'voos': voos,'historicos': historicos})
 
 def reports(request):
     return render(request, "reports.html")

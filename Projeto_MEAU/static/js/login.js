@@ -14,7 +14,7 @@ function validate(){
         return false;
     }
 
-    else if (user === "gerente" && senha === "gerenter123") {
+    else if (user === "gerente" && senha === "gerente123") {
         window.location.assign ("../reports");
         return false;
     }
