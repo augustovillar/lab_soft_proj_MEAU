@@ -8,52 +8,40 @@ from datetime import datetime
 
 # Create your views here.
 
-def handle500(request):
-    return render(request, "handle500.html")
+# def handle500(request):
+#     return render(request, "handle500.html")
 
 def login(request):
     return render(request, "login.html")
 
 def crud(request):
-    return render(request, "crud.html")
-
-# def atualizarOriginal(request):
-#     if request.method == "POST":
-#         form = atualizaVoo(request.POST)
-#         if form.is_valid():
-#             form.update()
-#     else:
-#         form = atualizaVoo()
-#     return render(request, "atualizar.html", {'form': form})    
+    return render(request, "crud.html") 
 
 def atualizar(request):
     historicos = Historico.objects.all()
     voos = Voo.objects.all()
     
     if request.method == 'POST':
-        codigo = request.POST['buscaAtualizacao']
+        codigo = request.POST['buscaAtualizar']
         voos = voos.filter(codigoVoo=codigo)
             
     return render(request, "atualizar.html", {'voos': voos})
 
-def modificar(request):
-    
-    if request.method =='POST':
-        codigo = request.POST['atualiza']
-        voo = Voo.objects.get(id=id)
-        form = criaVoo(request.POST, instance=voo)
-        if form.is_valid():
-            form.save()
-            return redirect('atualizar')
-    else:
-        form = criaVoo(instance=voo)
-    
-    form = criaVoo()
+def modificar(request, codigoVoo):
+    voo = Voo.objects.get(codigoVoo = codigoVoo)
+    return render(request, "modificar.html", {"voo": voo})
 
-    return render(request,
-                'modificar.html',
-                {'form': form})
+def posModificar(request, codigoVoo):
+    if (request.method == 'POST'):
+        voo = Voo.objects.get(codigoVoo = codigoVoo)
+        voo.codigoVoo = request.POST.get("cadastroCodigoVoo")
+        voo.companhia = request.POST.get("cadastroCompanhia")
+        voo.origem = request.POST.get("cadastroOrigem")
+        voo.destino = request.POST.get("cadastroDestino")
+        voo.horarioProgramado = request.POST.get("cadastroHorarioProgramado")
+        voo.save()
 
+    return redirect("atualizar")
 
 
 def createView(request):
@@ -116,7 +104,19 @@ def relatorio(request):
     return render(request, "relatorio.html")
 
 def remover(request):
-    return render(request, "remover.html")
+    historicos = Historico.objects.all()
+    voos = Voo.objects.all()
+    
+    if request.method == 'POST':
+        codigo = request.POST['buscaRemover']
+        voos = voos.filter(codigoVoo=codigo)
+            
+    return render(request, "remover.html", {'voos': voos})
+
+def confirmaRemover(request, codigoVoo):
+    voo = Voo.objects.get(codigoVoo = codigoVoo)
+    voo.delete()
+    return redirect("remover")
 
 def preenchimentoAtrasos(request):
 
