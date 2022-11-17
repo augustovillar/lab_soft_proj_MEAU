@@ -3,6 +3,8 @@ from .models import Voo, Historico
 from .forms import criaVoo, criaHistorico
 from django.shortcuts import redirect
 from django.contrib import messages
+import sqlite3
+from datetime import datetime
 
 # Create your views here.
 
@@ -117,33 +119,59 @@ def remover(request):
     return render(request, "remover.html")
 
 def preenchimentoAtrasos(request):
-    historicos = Historico.objects.all()
-    print("OLA TESTE")
-    print(request)
+
+    # historicos = Historico.objects.select_related("voo")
+    # print(historicos.query)
+    # print(historicos)
+
+    atrasados = Historico.objects.raw("SELECT * FROM historico JOIN voo ON historico.voo_id = voo.id")
+    print(atrasados.query)
+
+    # print(atrasados.query)
+    # print(atrasados)
+
     if request.method == 'POST':
-        listaNames = ['origem', 'destino', 'dataInicio', 'dataFinal', 'codigoEmpresa', 'codigoAeroporto', 'madrugada', 'manha', 'tarde', 'noite']
+        listaNames = ['origem', 'destino', 'dataInicio', 'dataFinal', 'codigoEmpresa', 'madrugada', 'manha', 'tarde', 'noite']
         listaRespostas = list()
+        print('oiii')
 
         for i in range(len(listaNames)):
             try:
                 listaRespostas.append(request.POST[listaNames[i]])
             except Exception as e:
                 listaRespostas.append('off')
-        print(listaRespostas)
 
-        # destino = request.POST['destino']
-        # dataInicio = request.POST['dataInicio']
-        # dataFinal = request.POST['dataFinal']
-        # codigoEmpresa = request.POST['codigoEmpresa']
-        # codigoAeroporto = request.POST['codigoAeroporto']
+        print('oii2i')
 
-        # madrugada = request.POST['madrugada']
-        # manha = request.POST['manha']
-        # tarde = request.POST['tarde']
-        # noite = request.POST['noite']
+        #filtra a origem se necessário
+        if listaRespostas[0]!='':
+            atrasados = atrasados.filter(origem=listaRespostas[0])
 
-        # print(origem+" "+destino+" "+dataInicio+" "+dataFinal+" "+codigoEmpresa+" "+codigoAeroporto+" "+madrugada+" "+manha+" "+tarde+" "+noite)
+        print('oii3i')
+        #filtra a destino se necessário
+        if listaRespostas[1]!='':
+            atrasados = atrasados.filter(destino=listaRespostas[1])
 
+        print('oii4i')
+        #aplicada datas
+        
+        dataMin = datetime.strptime(listaRespostas[2],'%Y-%m-%d')
+        print(dataMin)
+        dataMax = datetime.strptime(listaRespostas[3],'%Y-%m-%d')
+        print(dataMax)
+        atrasados = atrasados.filter(data__gst=dataMin)
+        atrasados = atrasados.filter(data__lst=dataMax)
+
+
+        #filtra a destino se necessário
+        if listaRespostas[4]!='':
+            atrasados = atrasados.filter(companhia=listaRespostas[4])
+
+        soma = 0
+        if listaRespostas[5]=='on':
+            soma = soma + 1
+        
+        
 
     return render(request, "preenchimentoAtrasos.html")
 

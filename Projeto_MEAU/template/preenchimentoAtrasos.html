@@ -121,7 +121,8 @@
 
                         {% csrf_token %}
 
-                        <div class="col-12">
+
+                        <!-- <div class="col-12">
 
                             <label for="partida_chegada" class="form-label">Categoria<span class="text-muted"> (Caso
                                     nenhum seja selecionada, todos as categorias serão considerados)</span></label>
@@ -135,13 +136,15 @@
                                     <label class="form-check-label" for="categoria2">Destino</label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         
                         <div class="row g-3">
+                            
+
                             <div class="col-sm-6">
                                 <label for="dataInicio" class="form-label">Data Inicio</label>
-                                <input type="text" class="form-control" name="dataInicio" id="dataInicio"
+                                <input type="date" class="form-control" name="dataInicio" id="dataInicio"
                                     pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$" placeholder="Ex: 19/11/2021" value=""
                                     required>
                                 <div class="invalid-feedback">
@@ -151,11 +154,31 @@
 
                             <div class="col-sm-6">
                                 <label for="dataFinal" class="form-label">Data Final</label>
-                                <input type="text" class="form-control" name="dataFinal" id="dataFinal"
+                                <input type="date" class="form-control" name="dataFinal" id="dataFinal"
                                     pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$" placeholder="Ex: 02/12/2021" value=""
                                     required>
                                 <div class="invalid-feedback">
                                     Insira uma data de final válida.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="origem" class="form-label">Origem<span class="text-muted"> (Caso
+                                    nenhum seja selecionada, todas as origens serão considerados)</span></label>
+                                <input type="text" class="form-control" name="origem" id="origem"
+                                    pattern="^[A-Z]{3,4}$" placeholder="Ex: SSA ou SBAM" value="">
+                                <div class="invalid-feedback">
+                                    Insira um sigla de aeroporto válida.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="destino" class="form-label">Destino<span class="text-muted"> (Caso
+                                    nenhum seja selecionada, todas os destinos serão considerados)</span></label>
+                                <input type="text" class="form-control" name="destino" id="destino"
+                                    pattern="^[A-Z]{3,4}$" placeholder="Ex: SSA ou SBAM" value="">
+                                <div class="invalid-feedback">
+                                    Insira uma sigla de aeroporto válida.
                                 </div>
                             </div>
 
@@ -167,18 +190,6 @@
                                         placeholder="Ex: PCS">
                                     <div class="invalid-feedback">
                                         Coloque um código válido (3 maiúsculo).
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <label for="codigoAeroporto" class="form-label">Código Aeroporto <span
-                                        class="text-muted">(Caso vazio, todos os aeroportos serão considerados)</span></label>
-                                <div class="input-group has-validation">
-                                    <input type="text" class="form-control" name="codigoAeroporto" id="codigoAeroporto" pattern="^[A-Z]{3,4}$"
-                                        placeholder="Ex: SSA ou SBAM">
-                                    <div class="invalid-feedback">
-                                        Coloque um código válido (3 ou 4 caracteres maiúsculo).
                                     </div>
                                 </div>
                             </div>
