@@ -21,7 +21,7 @@ urlpatterns = [
    
    
     path('monitoring/', views.monitoring, name = "monitoramento"),
-    path('preenchimentoAtrasos/', views.preenchimentoAtrasos),
-    path('preenchimentoCancelamentos/', views.preenchimentoCancelamentos),
+    path('preenchimentoAtrasos/', views.preenchimentoAtrasos, name='atrasos'),
+    path('preenchimentoCancelamentos/', views.preenchimentoCancelamentos, name='cancelamento'),
     path('reports/', views.reports),
 ]

@@ -1,7 +1,6 @@
 <!doctype html>
 
 <script type="text/javascript">
-    function redireciona1() { window.location.assign("../relatorioAtraso"); }
     function redireciona2() { window.location.assign("../reports"); }
 </script>
 
@@ -118,7 +117,7 @@
             <div>
                 <div>
                     <h4 class="mb-3">Informações Necessárias</h4>
-                    <form action={% url 'create' %} method="post" class="needs-validation">
+                    <form action={% url 'atrasos' %} method="POST" class="needs-validation">
 
                         {% csrf_token %}
 
@@ -128,11 +127,11 @@
                                     nenhum seja selecionada, todos as categorias serão considerados)</span></label>
                             <div class="my-3">
                                 <div class="form-check">
-                                    <input id="categoria1" name="partida_chegada" type="checkbox" class="form-check-input">
+                                    <input id="categoria1" name="origem" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="categoria1">Origem</label>
                                 </div>
                                 <div class="form-check">
-                                    <input id="categoria2" name="partida_chegada" type="checkbox" class="form-check-input">
+                                    <input id="categoria2" name="destino" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="categoria2">Destino</label>
                                 </div>
                             </div>
@@ -142,7 +141,7 @@
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <label for="dataInicio" class="form-label">Data Inicio</label>
-                                <input type="text" class="form-control" id="dataInicio"
+                                <input type="text" class="form-control" name="dataInicio" id="dataInicio"
                                     pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$" placeholder="Ex: 19/11/2021" value=""
                                     required>
                                 <div class="invalid-feedback">
@@ -152,7 +151,7 @@
 
                             <div class="col-sm-6">
                                 <label for="dataFinal" class="form-label">Data Final</label>
-                                <input type="text" class="form-control" id="dataFinal"
+                                <input type="text" class="form-control" name="dataFinal" id="dataFinal"
                                     pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$" placeholder="Ex: 02/12/2021" value=""
                                     required>
                                 <div class="invalid-feedback">
@@ -164,7 +163,7 @@
                                 <label for="codigoEmpresa" class="form-label">Código Empresa <span
                                         class="text-muted">(Caso vazio, todas as empresas serão considerados)</span></label>
                                 <div class="input-group has-validation">
-                                    <input type="text" class="form-control" id="codigoEmpresa" pattern="^[A-Z]{3}$"
+                                    <input type="text" class="form-control" name='codigoEmpresa' id="codigoEmpresa" pattern="^[A-Z]{3}$"
                                         placeholder="Ex: PCS">
                                     <div class="invalid-feedback">
                                         Coloque um código válido (3 maiúsculo).
@@ -176,7 +175,7 @@
                                 <label for="codigoAeroporto" class="form-label">Código Aeroporto <span
                                         class="text-muted">(Caso vazio, todos os aeroportos serão considerados)</span></label>
                                 <div class="input-group has-validation">
-                                    <input type="text" class="form-control" id="codigoAeroporto" pattern="^[A-Z]{3,4}$"
+                                    <input type="text" class="form-control" name="codigoAeroporto" id="codigoAeroporto" pattern="^[A-Z]{3,4}$"
                                         placeholder="Ex: SSA ou SBAM">
                                     <div class="invalid-feedback">
                                         Coloque um código válido (3 ou 4 caracteres maiúsculo).
@@ -191,19 +190,19 @@
                                         nenhum seja selecionada, todos os periodos serão considerados)</span></label>
                                 <div class="my-3">
                                     <div class="form-check">
-                                        <input id="periodo1" name="peridoDia" type="checkbox" class="form-check-input">
+                                        <input id="periodo1" name="madrugada" type="checkbox" class="form-check-input">
                                         <label class="form-check-label" for="periodo1">Madrugada (00h-06h)</label>
                                     </div>
                                     <div class="form-check">
-                                        <input id="periodo2" name="peridoDia" type="checkbox" class="form-check-input">
+                                        <input id="periodo2" name="manha" type="checkbox" class="form-check-input">
                                         <label class="form-check-label" for="periodo2">Manhã (6h-12h)</label>
                                     </div>
                                     <div class="form-check">
-                                        <input id="periodo3" name="peridoDia" type="checkbox" class="form-check-input">
+                                        <input id="periodo3" name="tarde" type="checkbox" class="form-check-input">
                                         <label class="form-check-label" for="periodo3">Tarde (12h-18h)</label>
                                     </div>
                                     <div class="form-check">
-                                        <input id="periodo4" name="peridoDia" type="checkbox" class="form-check-input">
+                                        <input id="periodo4" name="noite" type="checkbox" class="form-check-input">
                                         <label class="form-check-label" for="periodo4">Noite (18h-00h)</label>
                                     </div>
                                 </div>
