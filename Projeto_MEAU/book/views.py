@@ -85,7 +85,7 @@ def partidas(request):
         codigo = request.POST['buscaPartidas']
         voos = voos.filter(codigoVoo=codigo)
             
-    return render(request, "partidas.html", {'voos': voos}, {'historicos': historicos})
+    return render(request, "partidas.html", {'voos': voos,'historicos': historicos})
 
 
 def chegadas(request):
