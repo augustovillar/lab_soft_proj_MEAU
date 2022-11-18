@@ -83,15 +83,14 @@ def reports(request):
 # def atrasos(request):
 #     return render(request, "atrasos.html")
 
-def dinamico(request):
+def dinamico(request, id):
+    historico = Historico.objects.get(voo_id = id)
+    form = criaHistorico(instance=historico)
     if request.method == 'POST':
-        form = criaHistorico(request.POST)
+        form = criaHistorico(request.POST, instance=historico)
         if form.is_valid():
             hist = form.save()
             return redirect('monitoramento')
-
-    else:
-        form = criaHistorico()
         
     return render(request,
                 'dinamico.html',

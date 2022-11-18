@@ -15,7 +15,7 @@ urlpatterns = [
     path('cadastrar/', views.createView, name = "create"),
     path('consultar/', views.consultar, name = "consultar"),
 
-    path('dinamico/', views.dinamico, name="dinamico"),
+    path('dinamico/<int:id>', views.dinamico, name="dinamico"),
     
     path('relatorio/', views.relatorio),
     path('remover/', views.remover, name = "remover"),

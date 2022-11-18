@@ -11,6 +11,9 @@
     </script>
 
 <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link href="../static/atualizar.css" rel="stylesheet">
+        
     <title>Consulta de Voo</title>
 
 
@@ -113,7 +116,7 @@
         <main>
             <div class="py-5 text-center">
                 <!-- <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-                <h2>Monitoramento de Voos - <a href="../dinamico">Atualizar</a></h2>
+                <h2>Monitoramento de Voos</h2>
                 <p class="lead">Nessa tela, é necessário o código do voo que deseja encontrar. Caso exista alguma inconsistência, o sistema avisará.</p>
             </div>
 
@@ -161,6 +164,7 @@
                     <th scope="col">Partida real</th>
                     <th scope="col">Data</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Editar</th>
                   </tr>
                 {% for x in voos %}
                     {% if x.origem == 'GRU' %}
@@ -176,6 +180,7 @@
                                     <td>{{h.status}}</td>
                                 {% endif %}
                             {% endfor %}
+                            <td><p data-placement="top" data-toggle="tooltip" title="Editar"><a type = "input" name = "voo" href="{% url 'dinamico' x.id%}" class="btn btn-primary btn-xs" method="POST" ><span class="glyphicon glyphicon-pencil"></span></a></p></td>
                             
                         </tr>
                     {% endif %}
@@ -195,6 +200,7 @@
                     <th scope="col">Chegada real</th>
                     <th scope="col">Data</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Editar</th>
                 </tr>
               {% for x in voos %}
                   {% if x.destino == 'GRU' %}
@@ -210,8 +216,11 @@
                                     <td>{{h.status}}</td>
                                 {% endif %}
                             {% endfor %}
+                            <td><p data-placement="top" data-toggle="tooltip" title="Editar"><a type = "input" name = "voo" href="{% url 'dinamico' x.id%}" class="btn btn-primary btn-xs" method="POST" ><span class="glyphicon glyphicon-pencil"></span></a></p></td>
                       </tr>
+                      
                   {% endif %}
+                  
                 {% endfor %}
                 
             </table>
