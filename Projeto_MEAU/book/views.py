@@ -133,7 +133,6 @@ def preenchimentoAtrasos(request):
     if request.method == 'POST':
         listaNames = ['origem', 'destino', 'dataInicio', 'dataFinal', 'codigoEmpresa', 'madrugada', 'manha', 'tarde', 'noite']
         listaRespostas = list()
-        print('oiii')
 
         for i in range(len(listaNames)):
             try:
@@ -170,5 +169,18 @@ def preenchimentoAtrasos(request):
     return render(request, "preenchimentoAtrasos.html")
 
 def preenchimentoCancelamentos(request):
-    return render(request, "preenchimentoCancelamentos.html")
+    historicos = Historico.objects.select_related("voo")
+    cancelados = historicos.filter(status = "CANCELADO")
+    
+    if request.method == 'POST':
+        dataIncio = request.POST['dataInicio']
+        if dataIncio != "":
+            cancelados = cancelados.filter(data__gte=dataIncio)
+
+        dataFinal = request.POST['dataFinal']
+        if dataFinal != "":
+            cancelados = cancelados.filter(data__lte=dataFinal)
+
+
+    return render(request, "preenchimentoCancelamentos.html", {'cancelados': cancelados})
 

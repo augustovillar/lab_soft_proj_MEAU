@@ -118,78 +118,30 @@
             <div>
                 <div>
                     <h4 class="mb-3">Informações Necessárias</h4>
-                    <form class="needs-validation" novalidate>
+                    <form action={% url 'cancelamento' %} method="POST" class="needs-validation">
+
+                        {% csrf_token %}
+
                         <div class="row g-3">
                             <div class="col-sm-6">
-                                <label for="dataInicio" class="form-label">Data Inicio</label>
-                                <input type="text" class="form-control" id="dataInicio"
-                                    pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$" placeholder="Ex: 19/11/2021" value=""
-                                    required>
+                                <label for="dataInicio"  class="form-label">Data Inicio <span
+                                    class="text-muted">(Caso vazio, não haverá limitante inicial.)</span></label>
+                                <input type="date" name="dataInicio" class="form-control" id="dataInicio"
+                                    pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$" placeholder="Ex: 19/11/2021" value="">
                                 <div class="invalid-feedback">
                                     Insira uma data de inicio válida.
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="dataFinal" class="form-label">Data Final</label>
-                                <input type="text" class="form-control" id="dataFinal"
-                                    pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$" placeholder="Ex: 02/12/2021" value=""
-                                    required>
+                                <label for="dataFinal" class="form-label">Data Final <span
+                                    class="text-muted">(Caso vazio, não haverá limitante final.)</span></label>
+                                <input type="date" name="dataFinal" class="form-control" id="dataFinal"
+                                    pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$" placeholder="Ex: 02/12/2021" value="">
                                 <div class="invalid-feedback">
                                     Insira uma data de final válida.
                                 </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <label for="codigoEmpresa" class="form-label">Código Empresa <span
-                                        class="text-muted">(Caso vazio, todas as empresas serão considerados)</span></label>
-                                <div class="input-group has-validation">
-                                    <input type="text" class="form-control" id="codigoEmpresa" pattern="^[A-Z]{3}$"
-                                        placeholder="Ex: PCS">
-                                    <div class="invalid-feedback">
-                                        Coloque um código válido (3 maiúsculo).
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <label for="codigoAeroporto" class="form-label">Código Aeroporto <span
-                                        class="text-muted">(Caso vazio, todos os aeroportos serão considerados)</span></label>
-                                <div class="input-group has-validation">
-                                    <input type="text" class="form-control" id="codigoAeroporto" pattern="^[A-Z]{3,4}$"
-                                        placeholder="Ex: SSA ou SBAM">
-                                    <div class="invalid-feedback">
-                                        Coloque um código válido (3 ou 4 caracteres maiúsculo).
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-
-
-                                <label for="periodoDia" class="form-label">Período do Dia<span class="text-muted"> (Caso
-                                        nenhum seja selecionada, todos os periodos serão considerados)</span></label>
-                                <div class="my-3">
-                                    <div class="form-check">
-                                        <input id="periodo1" name="peridoDia" type="checkbox" class="form-check-input">
-                                        <label class="form-check-label" for="periodo1">Madrugada (00h-06h)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input id="periodo2" name="peridoDia" type="checkbox" class="form-check-input">
-                                        <label class="form-check-label" for="periodo2">Manhã (6h-12h)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input id="periodo3" name="peridoDia" type="checkbox" class="form-check-input">
-                                        <label class="form-check-label" for="periodo3">Tarde (12h-18h)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input id="periodo4" name="peridoDia" type="checkbox" class="form-check-input">
-                                        <label class="form-check-label" for="periodo4">Noite (18h-00h)</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            
+                            </div>                            
 
                             <hr class="my-4">
                             
@@ -199,12 +151,37 @@
                             <div class="col-sm-6">
                                 <button type="button" class="w-100 btn btn-primary btn-lg" onclick="redireciona2()">Cancelar</button>
                             </div>
-                            
 
+                            <table class="table text-center">
+                                <tr>
+                                  <th scope="col">Código de Voo</th>
+                                  <th scope="col">Horário Programado</th>
+                                  <th scope="col">Horário Real</th>
+                                  <th scope="col">Companhia</th>
+                                  <th scope="col">Origem</th>
+                                  <th scope="col">Destino</th>
+                                  <th scope="col">Data</th>
+                                  <th scope="col">Status</th>
+                                  
+                                </tr>
+                                {% for x in cancelados %}
+                                    <tr class="center-text">
+                                        <th scope="row">{{ x.voo.codigoVoo }}</th>
+                                        <td>{{ x.voo.horarioProgramado }}</td>
+                                        <td>{{ x.horarioReal }}</td>
+                                        <td>{{ x.voo.companhia }}</td>
+                                        <td>{{ x.voo.origem }}</td>
+                                        <td>{{ x.voo.destino }}</td>
+                                        <td>{{ x.data }}</td>
+                                        <td>{{ x.status }}</td>
+                                        
+                                    </tr>
+                                {% endfor %}
+                                
+                            </table>
                     </form>
                 </div>
             </div>
-            
         </main>
 
         <footer class="text-muted py-5">
