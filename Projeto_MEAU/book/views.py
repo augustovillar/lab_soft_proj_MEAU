@@ -16,7 +16,7 @@ def login(request):
 
 def crud(request):
     return render(request, "crud.html") 
-
+ 
 def atualizar(request):
     historicos = Historico.objects.all()
     voos = Voo.objects.all()
@@ -83,15 +83,14 @@ def reports(request):
 # def atrasos(request):
 #     return render(request, "atrasos.html")
 
-def dinamico(request):
+def dinamico(request, id):
+    historico = Historico.objects.get(voo_id = id)
+    form = criaHistorico(instance=historico)
     if request.method == 'POST':
         form = criaHistorico(request.POST, instance=historico)
         if form.is_valid():
             hist = form.save()
             return redirect('monitoramento')
-
-    else:
-        form = criaHistorico()
         
     return render(request,
                 'dinamico.html',
@@ -129,17 +128,11 @@ def preenchimentoPeriodo(request):
         horarioInicial = request.POST["horarioInicial"]
         horarioFinal = request.POST["horarioFinal"]
 
-        for i in range(len(listaNames)):
-            try:
-                listaRespostas.append(request.POST[listaNames[i]])
-            except Exception as e:
-                listaRespostas.append('off')
+        if dataInicio != "":
+            periodos = periodos.filter(data__gte=dataInicio)
 
-        print('oii2i')
-
-        #filtra a origem se necessário
-        if listaRespostas[0]!='':
-            atrasados = atrasados.filter(origem=listaRespostas[0])
+        if dataFinal != "":
+            periodos = periodos.filter(data__lte=dataFinal)
 
         if codigoEmpresa != "":
             periodos = periodos.filter(companhia=codigoEmpresa)
@@ -153,15 +146,15 @@ def preenchimentoPeriodo(request):
         
 
     return render(request, "preenchimentoPeriodo.html", {'periodos': periodos})
-
+    
 def preenchimentoCancelamentos(request):
     historicos = Historico.objects.select_related("voo")
     cancelados = historicos.filter(status = "CANCELADO")
     
     if request.method == 'POST':
-        dataInicio = request.POST['dataInicio']
-        if dataInicio != "":
-            cancelados = cancelados.filter(data__gte=dataInicio)
+        dataIncio = request.POST['dataInicio']
+        if dataIncio != "":
+            cancelados = cancelados.filter(data__gte=dataIncio)
 
         dataFinal = request.POST['dataFinal']
         if dataFinal != "":
