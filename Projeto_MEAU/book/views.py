@@ -23,17 +23,17 @@ def atualizar(request):
     
     if request.method == 'POST':
         codigo = request.POST['buscaAtualizar']
-        voos = voos.filter(codigoVoo=codigo)
+        voos = voos.filter(codigoVoo__icontains=codigo)
             
     return render(request, "atualizar.html", {'voos': voos})
 
 def modificar(request, codigoVoo):
-    voo = Voo.objects.get(codigoVoo = codigoVoo)
+    voo = Voo.objects.get(codigoVoo__icontains = codigoVoo)
     return render(request, "modificar.html", {"voo": voo})
 
 def posModificar(request, codigoVoo):
     if (request.method == 'POST'):
-        voo = Voo.objects.get(codigoVoo = codigoVoo)
+        voo = Voo.objects.get(codigoVoo__icontains = codigoVoo)
         voo.codigoVoo = request.POST.get("cadastroCodigoVoo")
         voo.companhia = request.POST.get("cadastroCompanhia")
         voo.origem = request.POST.get("cadastroOrigem")
@@ -63,7 +63,7 @@ def consultar(request):
     
     if request.method == 'POST':
         codigo = request.POST['buscaGeral']
-        voos = voos.filter(codigoVoo=codigo)
+        voos = voos.filter(codigoVoo__icontains=codigo)
             
     return render(request, "consultar.html", {'voos': voos})
 
@@ -155,9 +155,9 @@ def preenchimentoAtrasos(request):
         print('oii4i')
         #aplicada datas
         
-        dataMin = datetime.strptime(listaRespostas[2],'%Y-%m-%d')
+        dataMin = datetime.strptime(str(listaRespostas[2]),'%Y-%m-%d')
         print(dataMin)
-        dataMax = datetime.strptime(listaRespostas[3],'%Y-%m-%d')
+        dataMax = datetime.strptime(str(listaRespostas[3]),'%Y-%m-%d')
         print(dataMax)
         atrasados = atrasados.filter(data__gst=dataMin)
         atrasados = atrasados.filter(data__lst=dataMax)
@@ -165,25 +165,9 @@ def preenchimentoAtrasos(request):
 
         #filtra a destino se necessário
         if listaRespostas[4]!='':
-            atrasados = atrasados.filter(companhia=listaRespostas[4])
-
-        soma = 0
-        if listaRespostas[5]=='on':
-            soma = soma + 1
-        
-        
+            atrasados = atrasados.filter(companhia=listaRespostas[4])        
 
     return render(request, "preenchimentoAtrasos.html")
-
-# def monitoring(request):
-#     historicos = Historico.objects.all()
-#     voos = Voo.objects.all()
-    
-#     if request.method == 'POST':
-#         codigo = request.POST['buscaVoos']
-#         voos = voos.filter(codigoVoo__icontains=codigo)
-            
-#     return render(request, "monitoring.html", {'voos': voos,'historicos': historicos})
 
 def preenchimentoCancelamentos(request):
     return render(request, "preenchimentoCancelamentos.html")
