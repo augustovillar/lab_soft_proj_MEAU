@@ -8,8 +8,8 @@ from datetime import datetime
 
 # Create your views here.
 
-# def handle500(request):
-#     return render(request, "handle500.html")
+def handle500(request):
+    return render(request, "handle500.html")
 
 def login(request):
     return render(request, "login.html")
@@ -80,9 +80,6 @@ def monitoring(request):
 def reports(request):
     return render(request, "reports.html")
 
-# def atrasos(request):
-#     return render(request, "atrasos.html")
-
 def dinamico(request):
     if request.method == 'POST':
         form = criaHistorico(request.POST)
@@ -118,64 +115,44 @@ def confirmaRemover(request, codigoVoo):
     voo.delete()
     return redirect("remover")
 
-def preenchimentoAtrasos(request):
+def preenchimentoPeriodo(request):
 
-    # historicos = Historico.objects.select_related("voo")
-    # print(historicos.query)
-    # print(historicos)
-
-    atrasados = Historico.objects.raw("SELECT * FROM historico JOIN voo ON historico.voo_id = voo.id")
-    print(atrasados.query)
-
-    # print(atrasados.query)
-    # print(atrasados)
+    periodos = Historico.objects.select_related("voo")    
 
     if request.method == 'POST':
-        listaNames = ['origem', 'destino', 'dataInicio', 'dataFinal', 'codigoEmpresa', 'madrugada', 'manha', 'tarde', 'noite']
-        listaRespostas = list()
+        dataInicio = request.POST["dataInicio"]
+        dataFinal = request.POST["dataFinal"]
+        codigoEmpresa = request.POST["codigoEmpresa"]
+        horarioInicial = request.POST["horarioInicial"]
+        horarioFinal = request.POST["horarioFinal"]
 
-        for i in range(len(listaNames)):
-            try:
-                listaRespostas.append(request.POST[listaNames[i]])
-            except Exception as e:
-                listaRespostas.append('off')
+        if dataInicio != "":
+            periodos = periodos.filter(data__gte=dataInicio)
 
-        print('oii2i')
+        if dataFinal != "":
+            periodos = periodos.filter(data__lte=dataFinal)
 
-        #filtra a origem se necessário
-        if listaRespostas[0]!='':
-            atrasados = atrasados.filter(origem=listaRespostas[0])
+        if codigoEmpresa != "":
+            periodos = periodos.filter(companhia=codigoEmpresa)
 
-        print('oii3i')
-        #filtra a destino se necessário
-        if listaRespostas[1]!='':
-            atrasados = atrasados.filter(destino=listaRespostas[1])
+        if horarioInicial != "":
+            periodos = periodos.filter(horarioReal__gte=horarioInicial)
 
-        print('oii4i')
-        #aplicada datas
+        if horarioFinal != "":
+            periodos = periodos.filter(horarioReal__lte=horarioFinal)
+
         
-        dataMin = datetime.strptime(str(listaRespostas[2]),'%Y-%m-%d')
-        print(dataMin)
-        dataMax = datetime.strptime(str(listaRespostas[3]),'%Y-%m-%d')
-        print(dataMax)
-        atrasados = atrasados.filter(data__gst=dataMin)
-        atrasados = atrasados.filter(data__lst=dataMax)
 
-
-        #filtra a destino se necessário
-        if listaRespostas[4]!='':
-            atrasados = atrasados.filter(companhia=listaRespostas[4])        
-
-    return render(request, "preenchimentoAtrasos.html")
+    return render(request, "preenchimentoPeriodo.html", {'periodos': periodos})
 
 def preenchimentoCancelamentos(request):
     historicos = Historico.objects.select_related("voo")
     cancelados = historicos.filter(status = "CANCELADO")
     
     if request.method == 'POST':
-        dataIncio = request.POST['dataInicio']
-        if dataIncio != "":
-            cancelados = cancelados.filter(data__gte=dataIncio)
+        dataInicio = request.POST['dataInicio']
+        if dataInicio != "":
+            cancelados = cancelados.filter(data__gte=dataInicio)
 
         dataFinal = request.POST['dataFinal']
         if dataFinal != "":

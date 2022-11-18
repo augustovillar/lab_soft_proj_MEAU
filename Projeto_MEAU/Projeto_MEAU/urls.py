@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from book import views
 
-# handler500 = 'book.views.handle500'
+handler500 = 'book.views.handle500'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,7 +22,7 @@ urlpatterns = [
     path('confirmaRemover/<str:codigoVoo>', views.confirmaRemover, name = "confirmaRemover"),
    
     path('monitoring/', views.monitoring, name = "monitoramento"),
-    path('preenchimentoAtrasos/', views.preenchimentoAtrasos, name='atrasos'),
+    path('preenchimentoPeriodo/', views.preenchimentoPeriodo, name='periodo'),
     path('preenchimentoCancelamentos/', views.preenchimentoCancelamentos, name='cancelamento'),
     path('reports/', views.reports),
 ]
