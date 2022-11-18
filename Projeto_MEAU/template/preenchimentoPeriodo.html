@@ -7,7 +7,7 @@
 <html lang="pt-br">
 
 <head>
-    <title>Preenchimento Atrasos</title>
+    <title>Preenchimento Periodo</title>
 
 
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
@@ -117,36 +117,16 @@
             <div>
                 <div>
                     <h4 class="mb-3">Informações Necessárias</h4>
-                    <form action={% url 'atrasos' %} method="POST" class="needs-validation">
+                    <form action={% url 'periodo' %} method="POST" class="needs-validation">
 
                         {% csrf_token %}
-
-
-                        <!-- <div class="col-12">
-
-                            <label for="partida_chegada" class="form-label">Categoria<span class="text-muted"> (Caso
-                                    nenhum seja selecionada, todos as categorias serão considerados)</span></label>
-                            <div class="my-3">
-                                <div class="form-check">
-                                    <input id="categoria1" name="origem" type="checkbox" class="form-check-input">
-                                    <label class="form-check-label" for="categoria1">Origem</label>
-                                </div>
-                                <div class="form-check">
-                                    <input id="categoria2" name="destino" type="checkbox" class="form-check-input">
-                                    <label class="form-check-label" for="categoria2">Destino</label>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        
                         <div class="row g-3">
-                            
 
                             <div class="col-sm-6">
                                 <label for="dataInicio" class="form-label">Data Inicio</label>
                                 <input type="date" class="form-control" name="dataInicio" id="dataInicio"
-                                    pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$" placeholder="Ex: 19/11/2021" value=""
-                                    required>
+                                    pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$"
+                                    placeholder="Ex: 19/11/2021" value="">
                                 <div class="invalid-feedback">
                                     Insira uma data de inicio válida.
                                 </div>
@@ -155,49 +135,56 @@
                             <div class="col-sm-6">
                                 <label for="dataFinal" class="form-label">Data Final</label>
                                 <input type="date" class="form-control" name="dataFinal" id="dataFinal"
-                                    pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$" placeholder="Ex: 02/12/2021" value=""
-                                    required>
+                                    pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$"
+                                    placeholder="Ex: 02/12/2021" value="">
                                 <div class="invalid-feedback">
                                     Insira uma data de final válida.
                                 </div>
                             </div>
 
+                            
+
+
                             <div class="col-sm-6">
-                                <label for="origem" class="form-label">Origem<span class="text-muted"> (Caso
-                                    nenhum seja selecionada, todas as origens serão considerados)</span></label>
-                                <input type="text" class="form-control" name="origem" id="origem"
-                                    pattern="^[A-Z]{3,4}$" placeholder="Ex: SSA ou SBAM" value="">
-                                <div class="invalid-feedback">
-                                    Insira um sigla de aeroporto válida.
+                                <label for="horarioInicial" class="form-label">Horário Inicial <span
+                                        class="text-muted">(Caso vazio, o harário inicial não será
+                                        considerado.)</span></label>
+                                <div class="input-group has-validation">
+                                    <input type="time" class="form-control" name='horarioInicial' id="horarioInicial"
+                                        placeholder="Ex: 16:45">
+                                    <div class="invalid-feedback">
+                                        Coloque horário válido.
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="destino" class="form-label">Destino<span class="text-muted"> (Caso
-                                    nenhum seja selecionada, todas os destinos serão considerados)</span></label>
-                                <input type="text" class="form-control" name="destino" id="destino"
-                                    pattern="^[A-Z]{3,4}$" placeholder="Ex: SSA ou SBAM" value="">
-                                <div class="invalid-feedback">
-                                    Insira uma sigla de aeroporto válida.
+                                <label for="horarioFinal" class="form-label">Horário Final <span
+                                        class="text-muted">(Caso vazio, o harário final não será
+                                        considerado.)</span></label>
+                                <div class="input-group has-validation">
+                                    <input type="time" class="form-control" name='horarioFinal' id="horarioFinal"
+                                        placeholder="Ex: 16:50">
+                                    <div class="invalid-feedback">
+                                        Coloque horário válido.
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="codigoEmpresa" class="form-label">Código Empresa <span
-                                        class="text-muted">(Caso vazio, todas as empresas serão considerados)</span></label>
+                                        class="text-muted">(Caso vazio, todas as empresas serão
+                                        considerados)</span></label>
                                 <div class="input-group has-validation">
-                                    <input type="text" class="form-control" name='codigoEmpresa' id="codigoEmpresa" pattern="^[A-Z]{3}$"
-                                        placeholder="Ex: PCS">
+                                    <input type="text" class="form-control" name='codigoEmpresa' id="codigoEmpresa"
+                                        pattern="^[A-Z]{3}$" placeholder="Ex: PCS">
                                     <div class="invalid-feedback">
                                         Coloque um código válido (3 maiúsculo).
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-12">
-
-
-                                <label for="periodoDia" class="form-label">Período do Dia<span class="text-muted"> (Caso
+                            <!-- <label for="periodoDia" class="form-label">Período do Dia<span class="text-muted"> (Caso
                                         nenhum seja selecionada, todos os periodos serão considerados)</span></label>
                                 <div class="my-3">
                                     <div class="form-check">
@@ -215,36 +202,67 @@
                                     <div class="form-check">
                                         <input id="periodo4" name="noite" type="checkbox" class="form-check-input">
                                         <label class="form-check-label" for="periodo4">Noite (18h-00h)</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
+                                    </div> 
+                                </div> -->
+
+
 
                             <hr class="my-4">
-                            
+
                             <div class="col-sm-6">
                                 <button class="w-100 btn btn-primary btn-lg" type="submit">Buscar</button>
                             </div>
                             <div class="col-sm-6">
-                                <button type="button" class="w-100 btn btn-primary btn-lg" onclick="redireciona2()">Cancelar</button>
+                                <button type="button" class="w-100 btn btn-primary btn-lg"
+                                    onclick="redireciona2()">Cancelar</button>
                             </div>
-                            
+                        </div>
+                        <p></p>
+                        <p></p>
+                        <table class="table text-center">
+                            <tr>
+                                <th scope="col">Código de Voo</th>
+                                <th scope="col">Horário Programado</th>
+                                <th scope="col">Horário Real</th>
+                                <th scope="col">Companhia</th>
+                                <th scope="col">Origem</th>
+                                <th scope="col">Destino</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Status</th>
+
+                            </tr>
+                            {% for x in periodos %}
+                            <tr class="center-text">
+                                <th scope="row">{{ x.voo.codigoVoo }}</th>
+                                <td>{{ x.voo.horarioProgramado }}</td>
+                                <td>{{ x.horarioReal }}</td>
+                                <td>{{ x.voo.companhia }}</td>
+                                <td>{{ x.voo.origem }}</td>
+                                <td>{{ x.voo.destino }}</td>
+                                <td>{{ x.data }}</td>
+                                <td>{{ x.status }}</td>
+
+                            </tr>
+                            {% endfor %}
+
+                        </table>
+
 
                     </form>
                 </div>
             </div>
-            
+
         </main>
 
         <footer class="text-muted py-5">
             <div class="container">
-              <p class="float-end mb-1">
-                <a href="#">Volte ao topo</a>
-              </p>
-              <p class="mb-1">&copy; MEAU Copyright 2022.</p>
+                <p class="float-end mb-1">
+                    <a href="#">Volte ao topo</a>
+                </p>
+                <p class="mb-1">&copy; MEAU Copyright 2022.</p>
             </div>
-          </footer>
-          <script src="../static/js/bootstrap.bundle.min.js"></script>
+        </footer>
+        <script src="../static/js/bootstrap.bundle.min.js"></script>
     </div>
 
 

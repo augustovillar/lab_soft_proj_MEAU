@@ -124,60 +124,63 @@
 
                         <div class="row g-3">
                             <div class="col-sm-6">
-                                <label for="dataInicio"  class="form-label">Data Inicio <span
-                                    class="text-muted">(Caso vazio, não haverá limitante inicial.)</span></label>
+                                <label for="dataInicio" class="form-label">Data Inicio <span class="text-muted">(Caso
+                                        vazio, não haverá limitante inicial.)</span></label>
                                 <input type="date" name="dataInicio" class="form-control" id="dataInicio"
-                                    pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$" placeholder="Ex: 19/11/2021" value="">
+                                    pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$"
+                                    placeholder="Ex: 19/11/2021" value="">
                                 <div class="invalid-feedback">
                                     Insira uma data de inicio válida.
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="dataFinal" class="form-label">Data Final <span
-                                    class="text-muted">(Caso vazio, não haverá limitante final.)</span></label>
+                                <label for="dataFinal" class="form-label">Data Final <span class="text-muted">(Caso
+                                        vazio, não haverá limitante final.)</span></label>
                                 <input type="date" name="dataFinal" class="form-control" id="dataFinal"
-                                    pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$" placeholder="Ex: 02/12/2021" value="">
+                                    pattern="^(([0-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2]))\/[0-9]{4}$"
+                                    placeholder="Ex: 02/12/2021" value="">
                                 <div class="invalid-feedback">
                                     Insira uma data de final válida.
                                 </div>
-                            </div>                            
+                            </div>
 
                             <hr class="my-4">
-                            
+
                             <div class="col-sm-6">
                                 <button class="w-100 btn btn-primary btn-lg" type="submit">Buscar</button>
                             </div>
                             <div class="col-sm-6">
-                                <button type="button" class="w-100 btn btn-primary btn-lg" onclick="redireciona2()">Cancelar</button>
+                                <button type="button" class="w-100 btn btn-primary btn-lg"
+                                    onclick="redireciona2()">Cancelar</button>
                             </div>
 
                             <table class="table text-center">
                                 <tr>
-                                  <th scope="col">Código de Voo</th>
-                                  <th scope="col">Horário Programado</th>
-                                  <th scope="col">Horário Real</th>
-                                  <th scope="col">Companhia</th>
-                                  <th scope="col">Origem</th>
-                                  <th scope="col">Destino</th>
-                                  <th scope="col">Data</th>
-                                  <th scope="col">Status</th>
-                                  
+                                    <th scope="col">Código de Voo</th>
+                                    <th scope="col">Horário Programado</th>
+                                    <th scope="col">Horário Real</th>
+                                    <th scope="col">Companhia</th>
+                                    <th scope="col">Origem</th>
+                                    <th scope="col">Destino</th>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Status</th>
+
                                 </tr>
                                 {% for x in cancelados %}
-                                    <tr class="center-text">
-                                        <th scope="row">{{ x.voo.codigoVoo }}</th>
-                                        <td>{{ x.voo.horarioProgramado }}</td>
-                                        <td>{{ x.horarioReal }}</td>
-                                        <td>{{ x.voo.companhia }}</td>
-                                        <td>{{ x.voo.origem }}</td>
-                                        <td>{{ x.voo.destino }}</td>
-                                        <td>{{ x.data }}</td>
-                                        <td>{{ x.status }}</td>
-                                        
-                                    </tr>
+                                <tr class="center-text">
+                                    <th scope="row">{{ x.voo.codigoVoo }}</th>
+                                    <td>{{ x.voo.horarioProgramado }}</td>
+                                    <td>{{ x.horarioReal }}</td>
+                                    <td>{{ x.voo.companhia }}</td>
+                                    <td>{{ x.voo.origem }}</td>
+                                    <td>{{ x.voo.destino }}</td>
+                                    <td>{{ x.data }}</td>
+                                    <td>{{ x.status }}</td>
+
+                                </tr>
                                 {% endfor %}
-                                
+
                             </table>
                     </form>
                 </div>
@@ -186,13 +189,13 @@
 
         <footer class="text-muted py-5">
             <div class="container">
-              <p class="float-end mb-1">
-                <a href="#">Volte ao topo</a>
-              </p>
-              <p class="mb-1">&copy; MEAU Copyright 2022.</p>
+                <p class="float-end mb-1">
+                    <a href="#">Volte ao topo</a>
+                </p>
+                <p class="mb-1">&copy; MEAU Copyright 2022.</p>
             </div>
-          </footer>
-          <script src="../static/js/bootstrap.bundle.min.js"></script>
+        </footer>
+        <script src="../static/js/bootstrap.bundle.min.js"></script>
     </div>
 
 

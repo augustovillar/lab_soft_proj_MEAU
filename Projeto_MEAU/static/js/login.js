@@ -14,6 +14,16 @@ function validate(){
         return false;
     }
 
+    else if (user === "torre" && senha === "torre123") {
+        window.location.assign ("../monitoring");
+        return false;
+    }
+
+    else if (user === "piloto" && senha === "piloto123") {
+        window.location.assign ("../monitoring");
+        return false;
+    }
+
     else if (user === "gerente" && senha === "gerente123") {
         window.location.assign ("../reports");
         return false;
