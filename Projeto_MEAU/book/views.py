@@ -66,6 +66,11 @@ def consultar(request):
         voos = voos.filter(codigoVoo__icontains=codigo)
             
     return render(request, "consultar.html", {'voos': voos})
+    
+def painel(request):
+    historicos = Historico.objects.all()
+    voos = Voo.objects.all()
+    return render(request, "painel.html", {'voos': voos,'historicos': historicos})
 
 def monitoring(request):
     historicos = Historico.objects.all()
@@ -85,12 +90,17 @@ def reports(request):
 
 def dinamico(request, id):
     historico = Historico.objects.get(voo_id = id)
+
     form = criaHistorico(instance=historico)
     if request.method == 'POST':
         form = criaHistorico(request.POST, instance=historico)
         if form.is_valid():
-            hist = form.save()
-            return redirect('monitoramento')
+            if(not(historico.status == "" and form.status=="EMBARCANDO")):
+                return redirect('erro')
+
+            else:
+                hist = form.save()
+                return redirect('monitoramento')
         
     return render(request,
                 'dinamico.html',

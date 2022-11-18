@@ -37,3 +37,7 @@ function blockLogin(){
     document.getElementById("submit").disabled = true;
     return false;
 }
+
+function painel(){
+    window.location.assign ("../painel");
+}

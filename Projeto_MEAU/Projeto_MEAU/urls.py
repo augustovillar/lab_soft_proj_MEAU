@@ -25,4 +25,5 @@ urlpatterns = [
     path('preenchimentoPeriodo/', views.preenchimentoPeriodo, name='periodo'),
     path('preenchimentoCancelamentos/', views.preenchimentoCancelamentos, name='cancelamento'),
     path('reports/', views.reports),
+    path('painel/', views.painel),
 ]
