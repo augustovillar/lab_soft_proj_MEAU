@@ -155,9 +155,12 @@
                                 <select type="text" class="form-control" name="dinaStatus">
                                     <option value="{{formD.status}}">{{formD.status}}</option>
                                     {%if formD.voo.origem != "GRU" %}
-                                    {% if formD.status == "EM_VOO" %}
-                                        <option value="ATERRISADO">Aterrisado</option>
-                                    {% endif %}
+                                        {% if formD.status == "" %}
+                                            <option value="EM_VOO">Em voo</option>
+                                        {% endif %}
+                                        {% if formD.status == "EM_VOO" %}
+                                            <option value="ATERRISADO">Aterrisado</option>
+                                        {% endif %}
                                     {% else %}
                                     {% if formD.status == "PREVISTO" %}
                                         <option value="EMBARCANDO">Embarcando</option>

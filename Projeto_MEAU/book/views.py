@@ -58,7 +58,7 @@ def createView(request):
         except IntegrityError as erro:
             return render(request, "handle500.html", {"message": erro._cause_})
         if (voo.origem != "GRU"):
-            Historico.objects.create(voo = voo, status = "EM_VOO")
+            Historico.objects.create(voo = voo, status = "")
         else:
             Historico.objects.create(voo = voo, status = "PREVISTO")
         messages.success(request, 'O voo foi cadastrado com sucesso.')
