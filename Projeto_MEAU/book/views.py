@@ -75,9 +75,16 @@ def consultar(request):
     return render(request, "consultar.html", {'voos': voos})
     
 def painel(request):
-    historicos = Historico.objects.all()
-    voos = Voo.objects.all()
-    return render(request, "painel.html", {'voos': voos,'historicos': historicos})
+    # historicos = Historico.objects.all()
+    # voos = Voo.objects.all()
+    # historicos = historicos.filter(data__isnull=False)
+    # return render(request, "painel.html", {'voos': voos,'historicos': historicos})
+
+    historico = Historico.objects.select_related("voo")    
+    historico = historico.filter(data__isnull=False)
+
+    return render(request, "painel.html", {'historico': historico})
+
 
 def monitoring(request):
     historicos = Historico.objects.all()
@@ -86,6 +93,7 @@ def monitoring(request):
     if request.method == 'POST':
         codigo = request.POST['buscaVoos']
         voos = voos.filter(codigoVoo__icontains=codigo)
+
             
     return render(request, "monitoring.html", {'voos': voos, 'historicos': historicos})
 
@@ -135,6 +143,7 @@ def confirmaRemover(request, codigoVoo):
 def preenchimentoPeriodo(request):
 
     periodos = Historico.objects.select_related("voo")    
+    periodos = periodos.filter(data__isnull=False)
 
     if request.method == 'POST':
         dataInicio = request.POST["dataInicio"]
@@ -142,6 +151,8 @@ def preenchimentoPeriodo(request):
         codigoEmpresa = request.POST["codigoEmpresa"]
         horarioInicial = request.POST["horarioInicial"]
         horarioFinal = request.POST["horarioFinal"]
+
+        
 
         if dataInicio != "":
             periodos = periodos.filter(data__gte=dataInicio)

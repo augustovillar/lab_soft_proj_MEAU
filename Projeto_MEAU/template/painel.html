@@ -134,24 +134,20 @@
                     <th scope="col">Status</th>
           
                   </tr>
-                {% for x in voos %}
-                    {% if x.origem == 'GRU' %}
-                        <tr>
-                            <th scope="row">{{ x.codigoVoo }}</th>
-                            <td>{{ x.companhia }}</td>
-                            <td>{{ x.destino }}</td>
-                            <td>{{ x.horarioProgramado}}</td>
-                            {% for h in historicos %}
-                                {% if x.codigoVoo == h.voo.codigoVoo %}
-                                    <td>{{h.horarioReal}}</td>
-                                    <td>{{h.data}}</td>
-                                    <td>{{h.status}}</td>
-                                {% endif %}
-                            {% endfor %}
-                        
-                            
+                  {% for x in historico %}
+                  {% if x.voo.origem == 'GRU' %}
+                      <tr>
+                          <th scope="row">{{ x.voo.codigoVoo }}</th>
+                          <td>{{ x.voo.companhia }}</td>
+                          <td>{{ x.voo.origem }}</td>
+                          <td>{{ x.voo.horarioProgramado }}</td>
+                          <td>{{ x.horarioReal }}</td>
+                          <td>{{ x.data }}</td>
+                          <td>{{ x.status }}</td>  
                         </tr>
-                    {% endif %}
+                      
+                  {% endif %}
+                  
                 {% endfor %}
                   
               </table>
@@ -170,21 +166,16 @@
                     <th scope="col">Status</th>
                    
                 </tr>
-              {% for x in voos %}
-                  {% if x.destino == 'GRU' %}
+              {% for x in historico %}
+                  {% if x.voo.destino == 'GRU' %}
                       <tr>
-                          <th scope="row">{{ x.codigoVoo }}</th>
-                          <td>{{ x.companhia }}</td>
-                          <td>{{ x.origem }}</td>
-                          <td>{{ x.horarioProgramado}}</td>
-                          {% for h in historicos %}
-                                {% if x.codigoVoo == h.voo.codigoVoo %}
-                                    <td>{{h.horarioReal}}</td>
-                                    <td>{{h.data}}</td>
-                                    <td>{{h.status}}</td>
-                                {% endif %}
-                            {% endfor %}
-                            
+                          <th scope="row">{{ x.voo.codigoVoo }}</th>
+                          <td>{{ x.voo.companhia }}</td>
+                          <td>{{ x.voo.origem }}</td>
+                          <td>{{ x.voo.horarioProgramado }}</td>
+                          <td>{{ x.horarioReal }}</td>
+                          <td>{{ x.data }}</td>
+                          <td>{{ x.status }}</td>  
                         </tr>
                       
                   {% endif %}
