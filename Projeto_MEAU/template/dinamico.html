@@ -131,7 +131,14 @@
                         <div class="col-sm-6">
                             <label class="form-label">Data</label>
                             <div class="input-group has-validation">
-                                <input type="text" class="form-control" value="{{formD.data}}" name="dinaData" required pattern="^([1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9])$">
+                                {% if formD.status == "" or formD.status == "AUTORIZADO" %}
+                                    <input type="text" class="form-control" value="{{formD.data}}" name="dinaData" required pattern="^([1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9])$">
+                                {% elif formD.status == "EM_VOO" and formD.voo.destino == "GRU" %}
+                                    <input type="text" class="form-control" value="{{formD.data}}" name="dinaData" required pattern="^([1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9])$">
+                                {% else%}
+                                    <input readonly="readonly" type="text" class="form-control" value="{{formD.data}}" name="dinaData" required pattern="^([1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9])$">
+                                {% endif %} 
+                                
                                 <div class="invalid-feedback">
                                     Coloque um código válido.
                                 </div>
@@ -141,8 +148,16 @@
                         <div class="col-sm-6">
                             <label class="form-label">Horário Real</label>
                             <div class="input-group has-validation">
+                                {% if formD.status == "AUTORIZADO"%}
                                 <input type="text" class="form-control" value="{{formD.horarioReal}}" name="dinaHorario"
                                     placeholder="Ex: PCS" required>
+                                    {% elif formD.status == "EM_VOO" and formD.voo.destino == "GRU" %}
+                                    <input type="text" class="form-control" value="{{formD.horarioReal}}" name="dinaHorario"
+                                    placeholder="Ex: PCS" required>
+                                {% else%}
+                                <input readonly="readonly" type="text" class="form-control" value="{{formD.horarioReal}}" name="dinaHorario"
+                                placeholder="Ex: PCS" required>
+                                {% endif %}
                                 <div class="invalid-feedback">
                                     Coloque um código válido.
                                 </div>
@@ -152,7 +167,7 @@
                         <div class="col-sm-6">
                             <label class="form-label">Status</label>
                             <div class="input-group has-validation">
-                                <select type="text" class="form-control" name="dinaStatus">
+                                <select type="text" class="form-control" name="dinaStatus" required>
                                     <option value="{{formD.status}}">{{formD.status}}</option>
                                     {%if formD.voo.origem != "GRU" %}
                                         {% if formD.status == "" %}
@@ -162,7 +177,9 @@
                                             <option value="ATERRISADO">Aterrisado</option>
                                         {% endif %}
                                     {% else %}
-                                    {% if formD.status == "PREVISTO" %}
+                                    {% if formD.status == "" %}
+                                        <option value="PREVISTO">Previsto</option>
+                                    {% elif formD.status == "PREVISTO" %}
                                         <option value="EMBARCANDO">Embarcando</option>
                                         <option value="CANCELADO">Cancelado</option>
                                     {% elif formD.status == "EMBARCANDO" %}
@@ -179,10 +196,8 @@
                                         <option value="CANCELADO">Cancelado</option>
                                     {% elif formD.status == "AUTORIZADO" %}
                                         <option value="EM_VOO">Em voo</option>
-                                    {% elif formD.status == "EM_VOO" %}
-                                        <option value="ATERRISADO">Aterrisado</option>
                                     {% else %}
-                                        <option value="PREVISTO">Previsto</option>
+                                        <option value="PREVISTO"></option>
                                     {% endif %}
                                     {% endif %}
                                 </select>

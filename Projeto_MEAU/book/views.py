@@ -60,7 +60,7 @@ def createView(request):
         if (voo.origem != "GRU"):
             Historico.objects.create(voo = voo, status = "")
         else:
-            Historico.objects.create(voo = voo, status = "PREVISTO")
+            Historico.objects.create(voo = voo, status = "")
         messages.success(request, 'O voo foi cadastrado com sucesso.')
     return render(request, "cadastrar.html")
 
@@ -105,9 +105,14 @@ def posDinamico(request, id):
     if (request.method == 'POST'):
         voo = Historico.objects.get(id = id)
         voo.voo = Voo.objects.get(codigoVoo = request.POST.get("dinaVoo"))
-        voo.data = request.POST.get("dinaData")
+        if voo.status == "" or voo.status == "AUTORIZADO":
+            voo.data = request.POST.get("dinaData")
+        
         voo.status = request.POST.get("dinaStatus")
-        voo.horarioReal = request.POST.get("dinaHorario")
+        
+        if request.POST.get("dinaHorario") != "None":
+            voo.horarioReal = request.POST.get("dinaHorario")
+        
         voo.save()
 
     return redirect("monitoramento")
