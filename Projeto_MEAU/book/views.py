@@ -52,8 +52,12 @@ def createView(request):
         destino = request.POST.get("cadastroDestino")
         horarioProgramado = request.POST.get("cadastroHorarioProgramado")
         messages.success(request, 'O voo foi cadastrado com sucesso.')
-        Voo.objects.create(codigoVoo=codigoVoo, companhia=companhia,
+        voo = Voo.objects.create(codigoVoo=codigoVoo, companhia=companhia,
                        origem=origem, destino=destino, horarioProgramado=horarioProgramado)
+        if (voo.origem != "GRU"):
+            Historico.objects.create(voo = voo, status = "EM_VOO")
+        else:
+            Historico.objects.create(voo = voo, status = "PREVISTO")
 
     return render(request, "cadastrar.html")
 
@@ -80,31 +84,29 @@ def monitoring(request):
         codigo = request.POST['buscaVoos']
         voos = voos.filter(codigoVoo__icontains=codigo)
             
-    return render(request, "monitoring.html", {'voos': voos,'historicos': historicos})
+    return render(request, "monitoring.html", {'voos': voos, 'historicos': historicos})
 
 def reports(request):
     return render(request, "reports.html")
 
-# def atrasos(request):
-#     return render(request, "atrasos.html")
 
 def dinamico(request, id):
-    historico = Historico.objects.get(voo_id = id)
+    formD = Historico.objects.get(voo_id = id)
+    return render(request, "dinamico.html", {"formD": formD})
 
-    form = criaHistorico(instance=historico)
-    if request.method == 'POST':
-        form = criaHistorico(request.POST, instance=historico)
-        if form.is_valid():
-            if(not(historico.status == "" and form.status=="EMBARCANDO")):
-                return redirect('erro')
+def posDinamico(request, id):
+    if (request.method == 'POST'):
+        voo = Historico.objects.get(id = id)
+        voo.voo = Voo.objects.get(codigoVoo = request.POST.get("dinaVoo"))
+        voo.data = request.POST.get("dinaData")
+        voo.status = request.POST.get("dinaStatus")
+        voo.horarioReal = request.POST.get("dinaHorario")
+        voo.save()
 
-            else:
-                hist = form.save()
-                return redirect('monitoramento')
-        
-    return render(request,
-                'dinamico.html',
-                {'form': form})
+    return redirect("monitoramento")
+
+def erro_monitoramento(request):
+    return render(request, "erro_monitoramento.html")
 
 def cancelamento(request):
     return render(request, "cancelamento.html")
