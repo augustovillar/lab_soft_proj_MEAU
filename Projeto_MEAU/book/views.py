@@ -3,6 +3,7 @@ from .models import Voo, Historico
 from .forms import criaVoo, criaHistorico
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.db import IntegrityError
 import sqlite3
 from datetime import datetime
 
@@ -51,14 +52,16 @@ def createView(request):
         origem = request.POST.get("cadastroOrigem")
         destino = request.POST.get("cadastroDestino")
         horarioProgramado = request.POST.get("cadastroHorarioProgramado")
-        messages.success(request, 'O voo foi cadastrado com sucesso.')
-        voo = Voo.objects.create(codigoVoo=codigoVoo, companhia=companhia,
+        try:
+            voo = Voo.objects.create(codigoVoo=codigoVoo, companhia=companhia,
                        origem=origem, destino=destino, horarioProgramado=horarioProgramado)
+        except IntegrityError as erro:
+            return render(request, "handle500.html", {"message": erro._cause_})
         if (voo.origem != "GRU"):
             Historico.objects.create(voo = voo, status = "EM_VOO")
         else:
             Historico.objects.create(voo = voo, status = "PREVISTO")
-
+        messages.success(request, 'O voo foi cadastrado com sucesso.')
     return render(request, "cadastrar.html")
 
 def consultar(request):
