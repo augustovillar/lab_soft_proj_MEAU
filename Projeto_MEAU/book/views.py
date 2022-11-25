@@ -75,10 +75,6 @@ def consultar(request):
     return render(request, "consultar.html", {'voos': voos})
     
 def painel(request):
-    # historicos = Historico.objects.all()
-    # voos = Voo.objects.all()
-    # historicos = historicos.filter(data__isnull=False)
-    # return render(request, "painel.html", {'voos': voos,'historicos': historicos})
 
     historico = Historico.objects.select_related("voo")    
     historico = historico.filter(data__isnull=False)
