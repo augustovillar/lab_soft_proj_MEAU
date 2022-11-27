@@ -120,12 +120,6 @@ def posDinamico(request, id):
 def erro_monitoramento(request):
     return render(request, "erro_monitoramento.html")
 
-def cancelamento(request):
-    return render(request, "cancelamento.html")
-
-def relatorio(request):
-    return render(request, "relatorio.html")
-
 def remover(request):
     historicos = Historico.objects.all()
     voos = Voo.objects.all()

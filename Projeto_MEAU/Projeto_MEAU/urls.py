@@ -17,7 +17,6 @@ urlpatterns = [
 
     path('dinamico/<int:id>', views.dinamico, name="dinamico"),
     path('posDinamico/<int:id>', views.posDinamico, name = "posDinamico"),
-    path('relatorio/', views.relatorio),
     path('remover/', views.remover, name = "remover"),
     path('confirmaRemover/<str:codigoVoo>', views.confirmaRemover, name = "confirmaRemover"),
     path('erro_monitoramento/', views.erro_monitoramento, name = "erro_monitoramento"),

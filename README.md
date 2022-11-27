@@ -88,15 +88,18 @@ python manage.py test
 ```
 # Utilizando o sistema
 
-Na tela de login, preencha o campo "usuário" com um dos seguintes nomes para acessar as telas citadas abaixo e clique em "entrar":
+Na tela de login, preencha o campo "usuário" e "senha" com uma das seguintes opções para acessar as telas citadas abaixo e clique em "entrar":
 
-- Digite `operador` para acessar a tela de CRUD (criação, remoção, atualização e consulta do cadastro de um voo).
-- Digite `funcionario` para acessar a tela de monitoramento, que permite a atualização do status e do horário de chegada e partida real do voo.
-- Digite `gerente` para acessar a tela de relatórios.
+- Usuário = `operador` e senha = `operador123` para acessar a tela de CRUD (criação, remoção, atualização e consulta do cadastro de um voo).
+- Usuário = `funcionario` e senha = `funcionario123` para acessar a tela de monitoramento, que permite a atualização do status e do horário de chegada e partida real do voo.
+- Usuário = `torre` e senha = `torre123` para acessar a tela de monitoramento, que permite a atualização do status e do horário de chegada e partida real do voo.
+- Usuário = `piloto` e senha = `piloto123` para acessar a tela de monitoramento, que permite a atualização do status e do horário de chegada e partida real do voo.
+- Usuário = `gerente` e senha = `gerente123` para acessar a tela de relatórios.
 
 Para acessar as telas diretamente, use os links listados abaixo.
 
 - [http://localhost:8000/login/](http://localhost:8000/login/)
+- [http://localhost:8000/painel/](http://localhost:8000/painel/)
 
 - [http://localhost:8000/crud/](http://localhost:8000/crud/)
 - [http://localhost:8000/atualizar/](http://localhost:8000/atualizar/)
@@ -104,15 +107,13 @@ Para acessar as telas diretamente, use os links listados abaixo.
 - [http://localhost:8000/cadastrar/](http://localhost:8000/cadastrar/)
 - [http://localhost:8000/consultar/](http://localhost:8000/consultar/)
 - [http://localhost:8000/remover/](http://localhost:8000/remover/)
-- [http://localhost:8000/visualizavoo/](http://localhost:8000/visualizavoo/)
 
 - [http://localhost:8000/monitoring/](http://localhost:8000/monitoring/)
 - [http://localhost:8000/dinamico/](http://localhost:8000/dinamico/)
 
 - [http://localhost:8000/reports/](http://localhost:8000/reports/)
-- [http://localhost:8000/preenchimentoAtrasos/](http://localhost:8000/preenchimentoAtrasos/)
+- [http://localhost:8000/preenchimentoPeriodo/](http://localhost:8000/preenchimentoPeriodo/)
 - [http://localhost:8000/preenchimentoCancelamentos/](http://localhost:8000/preenchimentoCancelamentos/)
-- [http://localhost:8000/relatorio/](http://localhost:8000/relatorio/)
 
 As transições entre as telas do CRUD(criação, remoção, atualização e consulta do cadastro de um voo) podem ser vistas na imagem abaixo. 
 
