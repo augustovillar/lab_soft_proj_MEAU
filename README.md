@@ -46,7 +46,7 @@ Primeiro, o servidor local deve ser configurado. Dentro do diretório "lab_soft_
 
 ```sh
 cd Projeto_MEAU
-python manage.py runserver
+python manage.py runserver --insecure
 ```
 
 Após isso, a aplicação pode ser visualizada no seguinte endereço (acessar via navegador web): [http://localhost:8000/login](http://localhost:8000/login)
