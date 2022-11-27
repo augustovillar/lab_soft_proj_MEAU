@@ -2,7 +2,6 @@ from django.shortcuts import redirect, render
 from .models import Voo, Historico
 from .forms import criaVoo, criaHistorico
 from django.shortcuts import redirect
-from django.contrib import messages
 from django.db import IntegrityError
 import sqlite3
 from datetime import datetime
@@ -61,7 +60,7 @@ def createView(request):
             Historico.objects.create(voo = voo, status = "")
         else:
             Historico.objects.create(voo = voo, status = "")
-        messages.success(request, 'O voo foi cadastrado com sucesso.')
+       
     return render(request, "cadastrar.html")
 
 def consultar(request):
@@ -126,7 +125,7 @@ def remover(request):
     
     if request.method == 'POST':
         codigo = request.POST['buscaRemover']
-        voos = voos.filter(codigoVoo=codigo)
+        voos = voos.filter(codigoVoo__icontains=codigo)
             
     return render(request, "remover.html", {'voos': voos})
 
