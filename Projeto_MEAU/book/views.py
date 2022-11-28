@@ -138,6 +138,7 @@ def preenchimentoPeriodo(request):
 
     periodos = Historico.objects.select_related("voo")    
     periodos = periodos.filter(data__isnull=False)
+    periodos = periodos.filter(horarioReal__isnull=False)
 
     if request.method == 'POST':
         dataInicio = request.POST["dataInicio"]
@@ -146,7 +147,7 @@ def preenchimentoPeriodo(request):
         horarioInicial = request.POST["horarioInicial"]
         horarioFinal = request.POST["horarioFinal"]
 
-        
+        print(periodos)
 
         if dataInicio != "":
             periodos = periodos.filter(data__gte=dataInicio)
@@ -155,7 +156,8 @@ def preenchimentoPeriodo(request):
             periodos = periodos.filter(data__lte=dataFinal)
 
         if codigoEmpresa != "":
-            periodos = periodos.filter(companhia=codigoEmpresa)
+            periodos = periodos.filter(voo__companhia=codigoEmpresa)
+
 
         if horarioInicial != "":
             periodos = periodos.filter(horarioReal__gte=horarioInicial)
