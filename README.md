@@ -117,12 +117,13 @@ Para acessar as telas diretamente, use os links listados abaixo.
 
 As transições entre as telas do CRUD(criação, remoção, atualização e consulta do cadastro de um voo) podem ser vistas na imagem abaixo. 
 
-![Alt text](Entregas/tela_de_CRUD.png?raw=true "Diagrama tela de CRUD")
+
+![CRUD](Documentação/tela_de_CRUD.png?raw=true "Diagrama tela de CRUD")
 
 As transições entre as telas do monitoramento podem ser vistas na imagem abaixo:
 
-![Alt text](Entregas/tela_de_monitoramento.png?raw=true "Diagrama tela de monitoramento")
+![Alt text](Documentação/tela_de_monitoramento.png?raw=true "Diagrama tela de monitoramento")
 
 As transições entre as telas da geração de relatórios podem ser vistas na imagem abaixo:
 
-![Alt text](Entregas/tela_de_relatorios.png?raw=true "Diagrama tela de relatorios")
+![Alt text](Documentação/tela_de_relatorios.png?raw=true "Diagrama tela de relatorios")
