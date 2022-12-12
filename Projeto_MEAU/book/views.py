@@ -1,10 +1,7 @@
 from django.shortcuts import redirect, render
 from .models import Voo, Historico
-from .forms import criaVoo, criaHistorico
 from django.shortcuts import redirect
 from django.db import IntegrityError
-import sqlite3
-from datetime import datetime
 
 # Create your views here.
 
@@ -54,8 +51,8 @@ def createView(request):
         try:
             voo = Voo.objects.create(codigoVoo=codigoVoo, companhia=companhia,
                        origem=origem, destino=destino, horarioProgramado=horarioProgramado)
-        except IntegrityError as erro:
-            return render(request, "handle500.html", {"message": erro._cause_})
+        except IntegrityError:
+            return render(request, "handle500.html")
         if (voo.origem != "GRU"):
             Historico.objects.create(voo = voo, status = "")
         else:

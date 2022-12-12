@@ -1,5 +1,5 @@
 from django.test import TestCase
-from datetime import time, date
+from datetime import time
 from book.models import Voo, Historico
 
 # Create your tests here.

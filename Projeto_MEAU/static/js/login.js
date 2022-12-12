@@ -4,17 +4,17 @@ function validate(){
     var user = document.getElementById("username").value;
     var senha = document.getElementById("password").value;
 
-    if (user === "operador" && senha === "operador123") {
+    if (user === "operador" && senha === "1234") {
         window.location.assign ("../crud");
         return false;
     }
 
-    else if ( (user === "funcionario" && senha === "funcionario123") || (user === "torre" && senha === "torre123") || (user === "piloto" && senha === "piloto123")) {
+    else if ( (user === "funcionario" && senha === "1234") || (user === "torre" && senha === "1234") || (user === "piloto" && senha === "1234")) {
         window.location.assign ("../monitoring");
         return false;
     }
 
-    else if (user === "gerente" && senha === "gerente123") {
+    else if (user === "gerente" && senha === "1234") {
         window.location.assign ("../reports");
         return false;
     }
