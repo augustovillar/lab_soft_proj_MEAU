@@ -6,7 +6,7 @@ class Voo(models.Model):
     companhia = models.CharField(max_length=20)
     origem = models.CharField(max_length=30)
     destino = models.CharField(max_length=30)
-    horarioProgramado = models.TimeField()
+    horarioProgramado = models.TimeField(null=True)
     
     class Meta:
         db_table = 'voo'
@@ -28,10 +28,10 @@ class Historico(models.Model):
             ATERRISSADO = 'ATERRISSADO'
             
     id = models.AutoField(primary_key=True)
-    voo  = models.ForeignKey(Voo, on_delete=models.CASCADE)
-    data = models.DateField()
-    horarioReal = models.TimeField()
-    status = models.CharField(choices=Status.choices, max_length=30)
+    voo  = models.ForeignKey(Voo, on_delete=models.CASCADE, null=True)
+    data = models.DateField(null=True)
+    horarioReal = models.TimeField(null=True)
+    status = models.CharField(choices=Status.choices, max_length=30, null=True)
     class Meta:
         db_table = 'historico'
     def __str__(self):
