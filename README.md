@@ -46,7 +46,7 @@ Primeiro, o servidor local deve ser configurado. Dentro do diretório "lab_soft_
 
 ```sh
 cd Projeto_MEAU
-python manage.py runserver --insecure
+python manage.py runserver
 ```
 
 Após isso, a aplicação pode ser visualizada no seguinte endereço (acessar via navegador web): [http://localhost:8000/login](http://localhost:8000/login)
@@ -90,11 +90,11 @@ python manage.py test
 
 Na tela de login, preencha o campo "usuário" e "senha" com uma das seguintes opções para acessar as telas citadas abaixo e clique em "entrar":
 
-- Usuário = `operador` e senha = `operador123` para acessar a tela de CRUD (criação, remoção, atualização e consulta do cadastro de um voo).
-- Usuário = `funcionario` e senha = `funcionario123` para acessar a tela de monitoramento, que permite a atualização do status e do horário de chegada e partida real do voo.
-- Usuário = `torre` e senha = `torre123` para acessar a tela de monitoramento, que permite a atualização do status e do horário de chegada e partida real do voo.
-- Usuário = `piloto` e senha = `piloto123` para acessar a tela de monitoramento, que permite a atualização do status e do horário de chegada e partida real do voo.
-- Usuário = `gerente` e senha = `gerente123` para acessar a tela de relatórios.
+- Usuário = `operador` e senha = `1234` para acessar a tela de CRUD (criação, remoção, atualização e consulta do cadastro de um voo).
+- Usuário = `funcionario` e senha = `1234` para acessar a tela de monitoramento, que permite a atualização do status e do horário de chegada e partida real do voo.
+- Usuário = `torre` e senha = `1234` para acessar a tela de monitoramento, que permite a atualização do status e do horário de chegada e partida real do voo.
+- Usuário = `piloto` e senha = `1234` para acessar a tela de monitoramento, que permite a atualização do status e do horário de chegada e partida real do voo.
+- Usuário = `gerente` e senha = `1234` para acessar a tela de relatórios.
 
 Para acessar as telas diretamente, use os links listados abaixo.
 
