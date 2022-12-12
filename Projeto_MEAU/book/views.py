@@ -5,8 +5,8 @@ from django.db import IntegrityError
 
 # Create your views here.
 
-def handle500(request):
-    return render(request, "handle500.html")
+# def handle500(request):
+#     return render(request, "handle500.html")
 
 def login(request):
     return render(request, "login.html")
