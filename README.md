@@ -5,6 +5,11 @@
     * Augusto Barbosa Villar Silva - 11831853
     * Matheus Tavares de Andrade - 10346662
     * Emilly da Silva Arcanjo - 11808105
+
+# Executando o Programa - Nuvem
+
+Para rodar o programa basta acessar o link [http://augustovillar.pythonanywhere.com/](http://augustovillar.pythonanywhere.com/) ou seguir os passos abaixo.
+
 # Pré-requisitos
 
 Para utilizar este repositório você precisa ter Python 3.7 instalado e acesso a um terminal de linha de comando.
@@ -40,7 +45,7 @@ Por fim, é necessário instalar as dependencias no ambiente com o seguinte coma
 pip install -r requirements.txt
 ```
 
-# Executando o Programa
+# Executando o Programa - Servidor local
 
 Primeiro, o servidor local deve ser configurado. Dentro do diretório "lab_soft_proj_MEAU", execute os seguintes comandos:
 
