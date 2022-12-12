@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-br">
+    <script type="text/javascript">
+        function redireciona(){window.location.assign ("../preenchimentoPeriodo");}
+        function redireciona1(){window.location.assign ("../preenchimentoCancelamentos");}
+        function redireciona2(){window.location.assign ("../login");}
+    </script>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Tela de Relatórios</title>
+
+<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+
+    
+  </head>
+  <body>
+    
+    <header>
+        <div class="collapse navbar-dark bg-primary" id="navbarHeader">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 col-md-7 py-4">
+                <h4 class="text-white">Sobre o software</h4>
+                <p class="text-white">Esse software tem a funcionalidade de gerenciar os voos de um aeroporto. Este site é um MVP do produto solicitado.</p>
+              </div>
+              <div class="col-sm-4 offset-md-1 py-4">
+                <h4 class="text-white">Links uteis</h4>
+                <ul class="list-unstyled">
+                  <li><a href="https://github.com/augustovillar/lab_soft_proj_MEAU" class="text-white">Github</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navbar navbar-dark bg-primary shadow-sm">
+          <div class="container">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> -->
+              <strong>Aeroporto Internacional de São Paulo (GRU)</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-5 border-bottom py-4">Tela de Relatórios</h1>
+
+        <div class="row row-cols-1 align-items-md-center g-2 py-2">
+
+            <div class="row row-cols-1 row-cols-sm-2 g-4">
+                <button onclick="redireciona() "type="button" class="btn d-flex flex-column gap-2 btn-lg" 
+                        style="--bs-btn-hover-bg: #d8e7fd">
+                    <div
+                        class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                        <svg class="bi" width="1em" height="1em">
+                            <use xlink:href="#collection" />
+                        </svg>
+                    </div>
+                    <h4 class="fw-semibold mb-0">Relatórios de Periodos</h4>
+                    <p class="text-muted" style="text-align: left">Gerar relatório que mostra os voos do periodo escolhido pelo usuário.</p>
+                </button>
+
+                <button onclick="redireciona1()" type="button" class="btn d-flex flex-column gap-2 btn-lg" 
+                        style="--bs-btn-hover-bg: #d8e7fd">
+                    <div
+                        class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                        <svg class="bi" width="1em" height="1em">
+                            <use xlink:href="#gear-fill" />
+                        </svg>
+                    </div>
+                    <h4 class="fw-semibold mb-0">Relatórios de Cancelamentos</h4>
+                    <p class="text-muted" style="text-align: left">Gerar relatório que contabiliza o voos com cancelamentos.</p>
+                </button>
+
+            
+            </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end py-4">
+            <button onclick="redireciona2()" class="btn btn-light me-md-2" type="button" style="--bs-btn-bg: #e5e6e5">Sair</button>
+        </div>
+    </div>
+
+</main>
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">Volte ao topo</a>
+    </p>
+    <p class="mb-1">&copy; MEAU Copyright 2022.</p>
+  </div>
+</footer>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
